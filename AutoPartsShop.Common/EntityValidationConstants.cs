@@ -22,5 +22,9 @@
 
             public const int PartDescriptionMaxLength = 300;
         }
+        public class Seller
+        {
+            public const int SellerPhoneNumberMaxLength = 15;
+        }
     }
 }

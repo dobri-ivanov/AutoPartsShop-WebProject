@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static AutoPartsShop.Common.EntityValidationConstants.VehicleCategory;
-    internal class VehicleCategory
+    public class VehicleCategory
     {
         public VehicleCategory()
         {

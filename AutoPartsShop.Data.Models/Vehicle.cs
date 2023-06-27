@@ -5,12 +5,8 @@
     
     using static AutoPartsShop.Common.EntityValidationConstants.Vehicle;
     
-    internal class Vehicle
+    public class Vehicle
     {
-        public Vehicle()
-        {
-            this.Id = Guid.NewGuid();
-        }
         [Key]
         public Guid Id { get; set; }
 
@@ -21,6 +17,13 @@
         [Required]
         [MaxLength(VehicleModelMaxLength)]
         public string Model { get; set; } = null!;
+
+        public string? ImageUrl { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Seller))]
+        public Guid SellerId { get; set; }
+        public Seller Seller { get; set; } = null!;
 
         [Required]
         [ForeignKey(nameof(VehicleCategory))]
@@ -34,9 +37,6 @@
         [MaxLength(VehicleModificationMaxLength)]
         public string Modification { get; set; } = null!;
 
-        [Required]
-        [ForeignKey(nameof(Parts))]
-        public Guid PartId { get; set; }
         public virtual ICollection<Part> Parts { get; set; } = null!;
 
     }

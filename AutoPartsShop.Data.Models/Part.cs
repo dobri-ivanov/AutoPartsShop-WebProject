@@ -5,8 +5,12 @@
 
     using static AutoPartsShop.Common.EntityValidationConstants.Part;
     
-    internal class Part
+    public class Part
     {
+        public Part()
+        {
+            this.Id = Guid.NewGuid();
+        }
         [Key]
         public Guid Id { get; set; }
 
@@ -17,6 +21,8 @@
         [Required]
         [MaxLength(PartDescriptionMaxLength)]
         public string Description { get; set; } = null!;
+
+        public string? ImageUrl { get; set; }
 
         [Required]
         public decimal Price { get; set; }
