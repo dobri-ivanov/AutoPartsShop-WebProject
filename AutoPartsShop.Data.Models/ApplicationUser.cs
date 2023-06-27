@@ -1,6 +1,8 @@
 ﻿namespace AutoPartsShop.Data.Models
 {
-    public class Class1
+    using Microsoft.AspNetCore.Identity;
+
+    public class ApplicationUser : IdentityUser<Guid>
     {
 
     }

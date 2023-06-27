@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoPartsShop.Common\AutoPartsShop.Common.csproj" />
+    <ProjectReference Include="..\AutoPartsShop.Data.Models\AutoPartsShop.Data.Models.csproj" />
     <ProjectReference Include="..\AutoPartsShop.Data\AutoPartsShop.Data.csproj" />
     <ProjectReference Include="..\AutoPartsShop.Web.ViewModels\AutoPartsShop.Web.ViewModels.csproj" />
   </ItemGroup>
