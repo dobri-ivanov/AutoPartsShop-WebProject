@@ -9,15 +9,20 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.16" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.16" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.16" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.18" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.18">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.14" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AutoPartsShop.Common\AutoPartsShop.Common.csproj" />
-    <ProjectReference Include="..\AutoPartsShop.Data.Models\AutoPartsShop.Data.Models.csproj" />
-    <ProjectReference Include="..\AutoPartsShop.Data\AutoPartsShop.Data.csproj" />
+    <ProjectReference Include="..\AutoPartsShop.Services.Data\AutoPartsShop.Services.Data.csproj" />
+    <ProjectReference Include="..\AutoPartsShop.Web.Infrastructure\AutoPartsShop.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\AutoPartsShop.Web.ViewModels\AutoPartsShop.Web.ViewModels.csproj" />
   </ItemGroup>
 

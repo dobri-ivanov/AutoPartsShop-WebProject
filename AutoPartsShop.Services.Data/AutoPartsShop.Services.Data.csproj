@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoPartsShop.Common\AutoPartsShop.Common.csproj" />
+    <ProjectReference Include="..\AutoPartsShop.Data.Models\AutoPartsShop.Data.Models.csproj" />
+    <ProjectReference Include="..\AutoPartsShop.Data\AutoPartsShop.Data.csproj" />
+    <ProjectReference Include="..\AutoPartsShop.Web.ViewModels\AutoPartsShop.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<PartViewModel>;
+@{
+    ViewData["Title"] = "Auto Parts Ads";
+}
+
+<style>
+    body {
+        background-image: url('https://res.cloudinary.com/practicaldev/image/fetch/s--BuPz-p40--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nphrgz8yfnjylrwfr0yl.png');
+    }
+    .card{
+        border: 0.5rem solid;
+        border-color: cadetblue;
+    }
+
+</style>
+
+<div id="page" class="container">
+    <div class="row">
+        @foreach (var ad in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <h3 class="card-title text-center">@ad.Name</h3>
+                    <img src="@ad.ImageUrl" class="card-img-top" alt="Auto Part Image">
+                    <div class="card-body">
+                        <h5 class="card-text">@ad.Vehicle</h5>
+                        <p class="card-text">Price: $@ad.Price</p>
+                        <a href="#" class="btn btn-primary">Buy</a>
+                        <a href="#" class="btn btn-secondary">Info</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

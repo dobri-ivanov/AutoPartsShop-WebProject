@@ -1,10 +1,15 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using AutoPartsShop.Web.Data;
 namespace AutoPartsShop.Web
 {
     using Microsoft.EntityFrameworkCore;
 
     using Data;
     using AutoPartsShop.Data.Models;
-    using Microsoft.AspNetCore.Identity;
+    using AutoPartsShop.Services.Data.Interfaces;
+    using AutoPartsShop.Services.Data;
+    using Views.Part;
 
     public class Program
     {
@@ -18,6 +23,8 @@ namespace AutoPartsShop.Web
 
             builder.Services.AddDbContext<AutoPartsDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            builder.Services.AddApplicationServices(typeof(IPartService));
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
             {
