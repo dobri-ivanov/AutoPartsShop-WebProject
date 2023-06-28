@@ -15,15 +15,16 @@ namespace AutoPartsShop.Services.Data
         }
         public async Task<IEnumerable<PartViewModel>> All()
         {
-             List<PartViewModel> parts = await context.Parts
-                .Select(p => new PartViewModel()
-                {
-                    Name = p.Name,
-                    Price = p.Price,
-                    ImageUrl = p.ImageUrl,
-                    Vehicle = String.Format($"{p.Vehicle.Make} {p.Vehicle.Model}")
-                })
-                .ToListAsync();
+            List<PartViewModel> parts = await context.Parts
+               .Select(p => new PartViewModel()
+               {
+                   Name = p.Name,
+                   Price = p.Price,
+                   ImageUrl = p.ImageUrl,
+                   Vehicle = String.Format($"{p.Vehicle.Make} {p.Vehicle.Model}"),
+                   Seller = p.Vehicle.Seller.User.UserName
+               })
+               .ToListAsync();
 
             return parts;
         }

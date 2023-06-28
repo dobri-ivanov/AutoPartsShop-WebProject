@@ -1,4 +1,4 @@
-﻿namespace AutoPartsShop.Web.Views.Part
+﻿namespace AutoPartsShop.Web.Infrastructure.Extensions
 {
     using System.Reflection;
 

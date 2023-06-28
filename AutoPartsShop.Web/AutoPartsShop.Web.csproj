@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoPartsShop.Common\AutoPartsShop.Common.csproj" />
+    <ProjectReference Include="..\AutoPartsShop.Data.Models\AutoPartsShop.Data.Models.csproj" />
     <ProjectReference Include="..\AutoPartsShop.Services.Data\AutoPartsShop.Services.Data.csproj" />
     <ProjectReference Include="..\AutoPartsShop.Web.Infrastructure\AutoPartsShop.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\AutoPartsShop.Web.ViewModels\AutoPartsShop.Web.ViewModels.csproj" />

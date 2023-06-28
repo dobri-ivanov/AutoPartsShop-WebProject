@@ -7,9 +7,14 @@
     body {
         background-image: url('https://res.cloudinary.com/practicaldev/image/fetch/s--BuPz-p40--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nphrgz8yfnjylrwfr0yl.png');
     }
-    .card{
+
+    .card {
         border: 0.5rem solid;
         border-color: cadetblue;
+    }
+
+    .contact-seller {
+        float: right;
     }
 
 </style>
@@ -25,8 +30,10 @@
                     <div class="card-body">
                         <h5 class="card-text">@ad.Vehicle</h5>
                         <p class="card-text">Price: $@ad.Price</p>
+                        <p class="card-text">Seller: @ad.Seller</p>
                         <a href="#" class="btn btn-primary">Buy</a>
                         <a href="#" class="btn btn-secondary">Info</a>
+                            <a href="#" class="btn btn-secondary contact-seller">Seller</a>
                     </div>
                 </div>
             </div>
