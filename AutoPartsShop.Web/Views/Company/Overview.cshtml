@@ -12,7 +12,6 @@
 <style>
     th, td {
         color: black;
-        font-style: bold;
     }
 
     body {
@@ -27,10 +26,10 @@
 
     .rounded-btn {
         margin-right: 5px;
-        display: inline-block; /* Make it behave like a block element */
-        border-radius: 20px; /* Adjust the value to control the roundness */
-        padding: 10px 20px; /* Add padding to give it some space */
-        text-decoration: none; /* Remove underline by default */
+        display: inline-block;
+        border-radius: 20px;
+        padding: 10px 20px;
+        text-decoration: none;
     }
 </style>
 <div class="container">
@@ -46,14 +45,15 @@
 
             var user = await UserManager.GetUserAsync(User);
             var userId = user.Id;
-            if (await SellerService.IsOwner(userId))
+            if (await SellerService.IsOwner(userId, Model.Id))
             {
                 <a href="/Company/Create" class="btn rounded-btn btn-secondary mr-2">Add Employee</a>
                 <a href="/Company/Edit/@Model.Id" class="btn rounded-btn btn-secondary">Edit Company</a>
-                <a asp-controller="Company" asp-action="Edit" class="btn rounded-btn btn-danger ">Delete Company</a>
+                <a href="/Company/Delete/@Model.Id" class="btn rounded-btn btn-danger ">Delete Company</a>
             }
         }
     </div>
+    <h2>Employees</h2>
     <table class="table">
         <thead>
             <tr>
@@ -71,7 +71,7 @@
                     <td>@item.PhoneNumber</td>
                     <td>@item.Position</td>
                     <td>
-                        @if (await SellerService.IsOwner(userId))
+                        @if (await SellerService.IsOwner(userId, Model.Id))
                         {
                             if (item.Position != "Owner")
                             {

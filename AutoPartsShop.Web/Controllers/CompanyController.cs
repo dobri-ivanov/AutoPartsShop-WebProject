@@ -9,11 +9,11 @@
     [Authorize]
     public class CompanyController : BaseController
     {
-        private readonly ICompanyService service;
+        private readonly ICompanyService companyService;
         private readonly ISellerService sellerService;
         public CompanyController(ICompanyService companyService, ISellerService sellerService)
         {
-            this.service = companyService;
+            this.companyService = companyService;
             this.sellerService = sellerService;
 
         }
@@ -38,7 +38,7 @@
             }
 
             formModel.CurrentUserId = CurrentUserId();
-            await service.CreateAsync(formModel);
+            await companyService.CreateAsync(formModel);
 
             return RedirectToAction("All", "Part");
         }
@@ -46,7 +46,7 @@
         [HttpGet]
         public async Task<IActionResult> Overview(Guid id)
         {
-            CompanyOverviewViewModel viewModel = await service.OverviewData(id);
+            CompanyOverviewViewModel viewModel = await companyService.OverviewData(id);
             if (viewModel == null)
             {
                 return RedirectToAction("All", "Part");
@@ -57,12 +57,12 @@
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            if (!await sellerService.IsOwner(CurrentUserId()))
+            if (!await sellerService.IsOwner(CurrentUserId(), id))
             {
                 return RedirectToAction("Overview", "Company");
             }
 
-            CompanyFormModel formModel = await service.EditCompanyAsync(id);
+            CompanyFormModel formModel = await companyService.EditCompanyAsync(id);
             
             return View(formModel);
         }
@@ -70,14 +70,40 @@
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, CompanyFormModel formModel)
         {
-            if (!await sellerService.IsOwner(CurrentUserId()))
+            if (!await sellerService.IsOwner(CurrentUserId(), id))
             {
                 return RedirectToAction("Overview", "Company");
             }
 
-            await service.EditCompanyAsync(id, formModel);
+            await companyService.EditCompanyAsync(id, formModel);
 
             return RedirectToAction("Overview", new {id = id});
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (!await sellerService.IsOwner(CurrentUserId(), id))
+            {
+                return RedirectToAction("Overview", "Company");
+            }
+
+            CompanyDeleteViewModel viewModel = await companyService.DeleteCompanyAsync(id);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid id, CompanyDeleteViewModel model)
+        {
+            if (!await sellerService.IsOwner(CurrentUserId(), id))
+            {
+                return RedirectToAction("Overview", "Company");
+            }
+
+            await companyService.DeleteCompanyFromDatabaseAsync(id);
+
+            return RedirectToAction("All", "Part");
         }
     }
 }

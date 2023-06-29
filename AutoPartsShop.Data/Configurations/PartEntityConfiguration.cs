@@ -32,7 +32,7 @@
                 Description = "In bad condition!",
                 Price = 60,
                 VehicleId = Guid.Parse("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c"),
-                ImageUrl = "https://www.hella.com/partnerworld/assets/images/10032598a.jpg"
+                ImageUrl = "https://images.cdn.circlesix.co/image/1/640/0/uploads/posts/2016/12/f184c93f6f87bd88c3ceb7b59847afba.jpg"
             };
             parts.Add(part);
 

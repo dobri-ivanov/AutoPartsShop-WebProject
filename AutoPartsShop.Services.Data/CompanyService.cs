@@ -26,6 +26,8 @@
 
             Seller seller = new Seller()
             {
+                FirstName = companyModel.FirstName,
+                LastName = companyModel.LastName,
                 UserId = companyModel.CurrentUserId,
                 CompanyId = company.Id,
                 PhoneNumber = companyModel.PhoneNumber,
@@ -34,6 +36,37 @@
             company.Sellers.Add(seller);
 
             await data.Companies.AddAsync(company);
+            await data.SaveChangesAsync();
+        }
+
+        public async Task<CompanyDeleteViewModel> DeleteCompanyAsync(Guid companyId)
+        {
+            if (companyId == Guid.Empty)
+            {
+                return null;
+            }
+
+
+            Company company = await data.Companies
+                .Include(c => c.Sellers)
+                .FirstAsync(c => c.Id == companyId);
+
+            CompanyDeleteViewModel viewModel = new CompanyDeleteViewModel()
+            {
+                Id = companyId,
+                Name = company.Name,
+                Address = company.Address,
+                EmployeeCount = company.Sellers.Count()
+            };
+
+            return viewModel;
+        }
+
+        public async Task DeleteCompanyFromDatabaseAsync(Guid companyId)
+        {
+            Company company = await data.Companies.FirstAsync(c => c.Id == companyId);
+
+            data.Companies.Remove(company);
             await data.SaveChangesAsync();
         }
 
@@ -88,6 +121,10 @@
 
         public async Task<CompanyOverviewViewModel> OverviewData(Guid companyId)
         {
+            if (companyId == Guid.Empty)
+            {
+                return null;
+            }
             Company company = await data.Companies
                 .Include(c => c.Sellers)
                 .FirstAsync(c => c.Id == companyId);
