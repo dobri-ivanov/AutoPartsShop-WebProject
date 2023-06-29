@@ -15,8 +15,20 @@ namespace AutoPartsShop.Services.Data
 
         public async Task<Guid> CompanyId(Guid userId)
         {
-            Seller? seller = await data.Sellers.FirstOrDefaultAsync(s => s.UserId == userId);
+            Seller seller = await data.Sellers.FirstAsync(s => s.UserId == userId);
             return seller.CompanyId;
+        }
+
+        public async Task<bool> IsOwner(Guid userId)
+        {
+            if (await IsSeller(userId))
+            {
+                Seller seller = await data.Sellers.FirstAsync(s => s.UserId == userId);
+
+                if (seller.IsOwner) return true;
+            }
+
+            return false;
         }
 
         public async Task<bool> IsSeller(Guid userId)

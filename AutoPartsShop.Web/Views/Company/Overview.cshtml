@@ -1,34 +1,90 @@
-﻿@model CompanyOverviewViewModel
+﻿@using AutoPartsShop.Data.Models;
+@using AutoPartsShop.Services.Data.Interfaces;
+@using Microsoft.AspNetCore.Identity;
 
+@inject UserManager<ApplicationUser> UserManager
+@inject ISellerService SellerService
 
+@model CompanyOverviewViewModel
+@{
+    ViewBag.Title = "Your Company";
+}
+<style>
+    th, td {
+        color: black;
+        font-style: bold;
+    }
+
+    body {
+        background-image: url("https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg");
+        color: black;
+    }
+
+    .btn-group {
+        margin-bottom: 3%;
+        margin-top: 6%;
+    }
+
+    .rounded-btn {
+        margin-right: 5px;
+        display: inline-block; /* Make it behave like a block element */
+        border-radius: 20px; /* Adjust the value to control the roundness */
+        padding: 10px 20px; /* Add padding to give it some space */
+        text-decoration: none; /* Remove underline by default */
+    }
+</style>
 <div class="container">
     <div class="title">
         <h1 class="text-center">@Model.Name</h1>
+        <h3 class="text-center">@Model.Address</h3>
     </div>
     <div class="btn-group">
-        <a href="/Company/Create" class="btn btn-primary">Create Company</a>
-        <a href="/Company/Edit" class="btn btn-primary">Edit Company</a>
-        <a href="/Company/Delete" class="btn btn-danger">Delete Company</a>
+        @{
+            <a href="/Company/Create" class="btn  rounded-btn btn-primary">Add Vehicle</a>
+            <a href="/Company/Edit" class="btn rounded-btn btn-primary">Add Part</a>
+
+
+            var user = await UserManager.GetUserAsync(User);
+            var userId = user.Id;
+            if (await SellerService.IsOwner(userId))
+            {
+                <a href="/Company/Create" class="btn rounded-btn btn-secondary mr-2">Add Employee</a>
+                <a href="/Company/Edit/@Model.Id" class="btn rounded-btn btn-secondary">Edit Company</a>
+                <a asp-controller="Company" asp-action="Edit" class="btn rounded-btn btn-danger ">Delete Company</a>
+            }
+        }
     </div>
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Employee ID</th>
                 <th>Name</th>
-                <th>Email</th>
+                <th>Phone Number</th>
                 <th>Position</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @*@foreach (var employee in model)
+            @foreach (var item in Model.Sellers)
             {
-            <tr>
-            <td>@employee.id</td>
-            <td>@employee.name</td>
-            <td>@employee.email</td>
-            <td>@employee.position</td>
-             </tr>
-            }*@
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Position</td>
+                    <td>
+                        @if (await SellerService.IsOwner(userId))
+                        {
+                            if (item.Position != "Owner")
+                            {
+                                <button class="btn rounded-btn btn-danger">Fire</button>
+                            }
+                            else
+                            {
+                                <button class="btn rounded-btn btn-info">Manage</button>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

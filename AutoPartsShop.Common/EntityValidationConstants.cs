@@ -25,6 +25,12 @@
         public class Seller
         {
             public const int SellerPhoneNumberMaxLength = 15;
+
+            public const int SellerFirstNameMaxLength = 50;
+            public const int SellerFirstNameMinLength = 5;
+
+            public const int SellerLastNameMaxLength = 50;
+            public const int SellerLastNameMinLength = 5;
         }
         public class Company
         {

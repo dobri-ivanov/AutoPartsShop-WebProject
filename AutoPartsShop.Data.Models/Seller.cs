@@ -15,6 +15,14 @@
         public Guid Id { get; set; }
 
         [Required]
+        [MaxLength(SellerFirstNameMaxLength)]
+        public string FirstName { get; set; } = null!;
+
+        [Required]
+        [MaxLength(SellerLastNameMaxLength)]
+        public string LastName { get; set; } = null!;
+
+        [Required]
         [MaxLength(SellerPhoneNumberMaxLength)]
         public string PhoneNumber { get; set; } = null!;
 
@@ -23,7 +31,6 @@
         public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
-        [ForeignKey(nameof(Company))]
         public Guid CompanyId { get; set; }
         public Company Company { get; set; } = null!;
 

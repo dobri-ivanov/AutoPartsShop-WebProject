@@ -27,6 +27,12 @@
                                       Assembly.GetExecutingAssembly();
             //builder.ApplyConfigurationsFromAssembly(configAssembly);
 
+            builder.Entity<Company>()
+                .HasMany(c => c.Sellers)
+                .WithOne(c => c.Company)
+                .HasForeignKey(c => c.CompanyId)
+                .IsRequired();
+
             base.OnModelCreating(builder);
         }
     }

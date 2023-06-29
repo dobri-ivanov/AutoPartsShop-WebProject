@@ -4,6 +4,7 @@ using AutoPartsShop.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoPartsShop.Data.Migrations
 {
     [DbContext(typeof(AutoPartsDbContext))]
-    partial class AutoPartsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230629113359_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,7 +108,7 @@ namespace AutoPartsShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies", (string)null);
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Part", b =>
@@ -139,7 +141,7 @@ namespace AutoPartsShop.Data.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("Parts", (string)null);
+                    b.ToTable("Parts");
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Seller", b =>
@@ -151,18 +153,8 @@ namespace AutoPartsShop.Data.Migrations
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
                     b.Property<bool>("IsOwner")
                         .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -178,7 +170,7 @@ namespace AutoPartsShop.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Sellers", (string)null);
+                    b.ToTable("Sellers");
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Vehicle", b =>
@@ -220,7 +212,7 @@ namespace AutoPartsShop.Data.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.VehicleCategory", b =>
@@ -238,7 +230,7 @@ namespace AutoPartsShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VehicleCategories", (string)null);
+                    b.ToTable("VehicleCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>

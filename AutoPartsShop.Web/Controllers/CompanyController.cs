@@ -5,21 +5,27 @@
     
     using AutoPartsShop.Web.ViewModels.Company;
     using AutoPartsShop.Services.Data.Interfaces;
-    using System.Security.Claims;
-    using AutoPartsShop.Data.Models;
 
     [Authorize]
-    public class CompanyController : Controller
+    public class CompanyController : BaseController
     {
         private readonly ICompanyService service;
-        public CompanyController(ICompanyService companyService)
+        private readonly ISellerService sellerService;
+        public CompanyController(ICompanyService companyService, ISellerService sellerService)
         {
-            service = companyService;
+            this.service = companyService;
+            this.sellerService = sellerService;
+
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            if (await sellerService.IsSeller(CurrentUserId()))
+            {
+                return RedirectToAction("All", "Part");
+            }
+
             return View();
         }
 
@@ -31,7 +37,7 @@
                 return View(formModel);
             }
 
-            formModel.CurrentUserId = Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier));
+            formModel.CurrentUserId = CurrentUserId();
             await service.CreateAsync(formModel);
 
             return RedirectToAction("All", "Part");
@@ -40,13 +46,38 @@
         [HttpGet]
         public async Task<IActionResult> Overview(Guid id)
         {
-            Company company = await service.Details(id);
-            CompanyOverviewViewModel viewModel = new CompanyOverviewViewModel()
+            CompanyOverviewViewModel viewModel = await service.OverviewData(id);
+            if (viewModel == null)
             {
-                Name = company.Name,
-            };
-
+                return RedirectToAction("All", "Part");
+            }
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            if (!await sellerService.IsOwner(CurrentUserId()))
+            {
+                return RedirectToAction("Overview", "Company");
+            }
+
+            CompanyFormModel formModel = await service.EditCompanyAsync(id);
+            
+            return View(formModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Guid id, CompanyFormModel formModel)
+        {
+            if (!await sellerService.IsOwner(CurrentUserId()))
+            {
+                return RedirectToAction("Overview", "Company");
+            }
+
+            await service.EditCompanyAsync(id, formModel);
+
+            return RedirectToAction("Overview", new {id = id});
         }
     }
 }

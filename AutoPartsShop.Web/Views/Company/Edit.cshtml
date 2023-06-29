@@ -1,12 +1,18 @@
 ﻿@model CompanyFormModel
 @{
-    ViewData["Title"] = "Become seller";
+    ViewBag.Title = "Edit Company";
 }
+<style>
 
+    body {
+        background-image: url("https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg");
+        color: black;
+    }
+</style>
 <div class="container">
-    <h1 class=" text-center">Register your company!</h1>
+    <h1 class=" text-center">Edit your company</h1>
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-        <form asp-action="Create" method="post">
+        <form asp-action="Edit" method="post">
             <div class="mb-3">
                 <label asp-for="@Model.Name" class="form-label">Name</label>
                 <input asp-for="@Model.Name" class="form-control" aria-required="true" />
@@ -17,7 +23,7 @@
                 <input asp-for="@Model.Address" class="form-control" aria-required="true" />
                 <span asp-validation-for="@Model.Address" class="text-danger"></span>
             </div>
-            <h2>Personal data - Owner</h2>
+            <h2>Owner - Personal data </h2>
             <div class="mb-3">
                 <label asp-for="@Model.FirstName" class="form-label">First Name</label>
                 <input asp-for="@Model.FirstName" class="form-control" aria-required="true" />
@@ -34,7 +40,7 @@
                 <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="Add" />
+                <input class="btn-lg btn-primary d-flex" type="submit" value="Edit" />
             </div>
         </form>
     </div>
@@ -44,3 +50,4 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+

@@ -21,6 +21,6 @@ namespace AutoPartsShop.Data.Models
         [MaxLength(CompanyAddressMaxLength)]
         public string Address { get; set; } = null!;
 
-        public ICollection<Seller> Sellers { get; set; } = null!;
+        public ICollection<Seller> Sellers { get;} = null!;
     }
 }
