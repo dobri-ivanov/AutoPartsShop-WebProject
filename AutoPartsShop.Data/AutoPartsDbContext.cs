@@ -1,11 +1,12 @@
 ﻿namespace AutoPartsShop.Web.Data
 {
+    using System.Reflection;
+    
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
     using AutoPartsShop.Data.Models;
-    using System.Reflection;
 
     public class AutoPartsDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {

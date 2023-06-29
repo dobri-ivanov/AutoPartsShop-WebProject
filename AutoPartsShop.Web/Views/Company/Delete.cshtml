@@ -1,4 +1,5 @@
 ﻿@model CompanyDeleteViewModel
+
 @{
     ViewData["Title"] = "Delete company";
 }
@@ -6,14 +7,13 @@
 <style>
     body {
         background-image: url("https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg");
-        color: black;
     }
 </style>
 
 <div class="container">
     <h1>Delete Company Confirmation</h1>
     <hr />
-    <h2>Are you sure you want to delete your company: "@Model.Name"?</h2>
+    <h2>Are you sure you want to delete your company: "<b>@Model.Name</b>"?</h2>
     <h3>Address: "@Model.Address"</h3>
     <h3>Employees count: @Model.EmployeeCount</h3>
     <form method="post" action="/Company/Delete/@Model.Id">

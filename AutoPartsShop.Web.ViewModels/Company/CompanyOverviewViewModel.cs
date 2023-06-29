@@ -1,8 +1,7 @@
-﻿
-using AutoPartsShop.Web.ViewModels.Seller;
-
-namespace AutoPartsShop.Web.ViewModels.Company
+﻿namespace AutoPartsShop.Web.ViewModels.Company
 {
+    using AutoPartsShop.Web.ViewModels.Seller;
+
     public class CompanyOverviewViewModel
     {
         public CompanyOverviewViewModel()

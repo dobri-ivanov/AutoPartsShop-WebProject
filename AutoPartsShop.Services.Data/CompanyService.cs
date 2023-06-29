@@ -1,12 +1,12 @@
 ﻿namespace AutoPartsShop.Services.Data
 {
+    using Microsoft.EntityFrameworkCore;
+    
     using AutoPartsShop.Data.Models;
-    using Interfaces;
     using AutoPartsShop.Web.Data;
     using AutoPartsShop.Web.ViewModels.Company;
-    using Microsoft.EntityFrameworkCore;
     using AutoPartsShop.Web.ViewModels.Seller;
-    using System.Security.Claims;
+    using Interfaces;
 
     public class CompanyService : ICompanyService
     {

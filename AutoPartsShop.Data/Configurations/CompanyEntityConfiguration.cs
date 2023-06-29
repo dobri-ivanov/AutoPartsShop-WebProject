@@ -1,8 +1,9 @@
 ﻿namespace AutoPartsShop.Data.Configurations
 {
-    using AutoPartsShop.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    
+    using AutoPartsShop.Data.Models;
 
     public class CompanyEntityConfiguration : IEntityTypeConfiguration<Company>
     {

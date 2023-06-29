@@ -1,7 +1,7 @@
-﻿using AutoPartsShop.Web.ViewModels.Company;
-
-namespace AutoPartsShop.Services.Data.Interfaces
+﻿namespace AutoPartsShop.Services.Data.Interfaces
 {
+
+    using AutoPartsShop.Web.ViewModels.Company;
     public interface ICompanyService
     {
         public Task CreateAsync(CompanyFormModel companyModel);

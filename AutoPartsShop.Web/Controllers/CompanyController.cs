@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
-    
+
     using AutoPartsShop.Web.ViewModels.Company;
     using AutoPartsShop.Services.Data.Interfaces;
 
@@ -63,7 +63,7 @@
             }
 
             CompanyFormModel formModel = await companyService.EditCompanyAsync(id);
-            
+
             return View(formModel);
         }
 
@@ -77,7 +77,7 @@
 
             await companyService.EditCompanyAsync(id, formModel);
 
-            return RedirectToAction("Overview", new {id = id});
+            return RedirectToAction("Overview", new { id = id });
         }
 
         [HttpGet]

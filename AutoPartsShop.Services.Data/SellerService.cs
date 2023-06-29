@@ -1,10 +1,11 @@
-﻿using AutoPartsShop.Data.Models;
-using AutoPartsShop.Services.Data.Interfaces;
-using AutoPartsShop.Web.Data;
-using Microsoft.EntityFrameworkCore;
-
-namespace AutoPartsShop.Services.Data
+﻿namespace AutoPartsShop.Services.Data
 {
+    using Microsoft.EntityFrameworkCore;
+    
+    using AutoPartsShop.Data.Models;
+    using AutoPartsShop.Web.Data;
+    using Interfaces;
+    
     public class SellerService : ISellerService
     {
         private readonly AutoPartsDbContext data;
