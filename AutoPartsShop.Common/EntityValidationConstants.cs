@@ -26,5 +26,13 @@
         {
             public const int SellerPhoneNumberMaxLength = 15;
         }
+        public class Company
+        {
+            public const int CompanyNameMaxLength = 15;
+            public const int CompanyNameMinLength = 3;
+
+            public const int CompanyAddressMaxLength = 50;
+            public const int CompanyAddressMinLength = 1;
+        }
     }
 }

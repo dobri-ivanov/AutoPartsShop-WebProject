@@ -21,6 +21,8 @@ namespace AutoPartsShop.Web
                 options.UseSqlServer(connectionString));
 
            builder.Services.AddApplicationServices(typeof(IPartService));
+           builder.Services.AddApplicationServices(typeof(ICompanyService));
+           builder.Services.AddApplicationServices(typeof(ISellerService));
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
             {

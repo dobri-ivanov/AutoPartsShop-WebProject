@@ -4,6 +4,7 @@ using AutoPartsShop.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoPartsShop.Data.Migrations
 {
     [DbContext(typeof(AutoPartsDbContext))]
-    partial class AutoPartsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230629081513_AddedCompanyTable")]
+    partial class AddedCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,7 +154,7 @@ namespace AutoPartsShop.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2f858184-e0e5-4e0f-9fd2-d5251eb30152"),
+                            Id = new Guid("d07e9096-1f4f-4d0f-b4d6-1a2c3b140cf9"),
                             Description = "In good condition!",
                             ImageUrl = "https://www.masterparts.com/wp-content/uploads/2020/07/clutch_kit.jpg",
                             Name = "Clutch",
@@ -161,7 +163,7 @@ namespace AutoPartsShop.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("eb84385d-a952-4d29-899b-607dbe1d3227"),
+                            Id = new Guid("145b7171-3c2f-42af-a9e4-d2ae4d9f2ef6"),
                             Description = "In bad condition!",
                             ImageUrl = "https://www.hella.com/partnerworld/assets/images/10032598a.jpg",
                             Name = "Braking pads",
@@ -176,12 +178,6 @@ namespace AutoPartsShop.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsOwner")
-                        .HasColumnType("bit");
-
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(15)
@@ -191,8 +187,6 @@ namespace AutoPartsShop.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasIndex("UserId");
 
@@ -448,19 +442,11 @@ namespace AutoPartsShop.Data.Migrations
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Seller", b =>
                 {
-                    b.HasOne("AutoPartsShop.Data.Models.Company", "Company")
-                        .WithMany("Sellers")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AutoPartsShop.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Company");
 
                     b.Navigation("User");
                 });
@@ -533,11 +519,6 @@ namespace AutoPartsShop.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("AutoPartsShop.Data.Models.Company", b =>
-                {
-                    b.Navigation("Sellers");
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Vehicle", b =>

@@ -18,13 +18,14 @@
         public DbSet<Vehicle> Vehicles { get; set; } = null!;
         public DbSet<VehicleCategory> VehicleCategories { get; set; } = null!;
         public DbSet<Seller> Sellers { get; set; } = null!;
+        public DbSet<Company> Companies { get; set; } = null!;
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             Assembly configAssembly = Assembly.GetAssembly(typeof(AutoPartsDbContext)) ??
                                       Assembly.GetExecutingAssembly();
-            builder.ApplyConfigurationsFromAssembly(configAssembly);
+            //builder.ApplyConfigurationsFromAssembly(configAssembly);
 
             base.OnModelCreating(builder);
         }

@@ -24,8 +24,8 @@
                 CategoryId = 1,
                 ProductionDate = new DateTime(2015, 01, 01),
                 Modification = "3.0 TDI 313hp",
-                SellerId = Guid.Parse("9D91AA6F-75FA-44B3-BD1C-FB066AA5401C"),
                 ImageUrl = "https://www.netcarshow.com/Audi-A6-2015.jpg",
+                CompanyId = Guid.Parse("89caa742-325e-4dbb-9176-d52f7706684a")
             };
             vehicles.Add(vehicle);
 
@@ -37,8 +37,8 @@
                 CategoryId = 1,
                 ProductionDate = new DateTime(2008, 01, 01),
                 Modification = "3.0 214hp",
-                SellerId = Guid.Parse("9D91AA6F-75FA-44B3-BD1C-FB066AA5401C"),
                 ImageUrl = "https://www.auto-data.net/images/f126/BMW-5-Series-E60.jpg",
+                CompanyId = Guid.Parse("89caa742-325e-4dbb-9176-d52f7706684a")
             };
             vehicles.Add(vehicle);
 

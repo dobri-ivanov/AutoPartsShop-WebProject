@@ -22,7 +22,7 @@ namespace AutoPartsShop.Services.Data
                    Price = p.Price,
                    ImageUrl = p.ImageUrl,
                    Vehicle = String.Format($"{p.Vehicle.Make} {p.Vehicle.Model}"),
-                   Seller = p.Vehicle.Seller.User.UserName
+                   Seller = p.Vehicle.Company.Name
                })
                .ToListAsync();
 

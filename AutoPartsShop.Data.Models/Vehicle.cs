@@ -21,9 +21,9 @@
         public string? ImageUrl { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Seller))]
-        public Guid SellerId { get; set; }
-        public Seller Seller { get; set; } = null!;
+        [ForeignKey(nameof(Company))]
+        public Guid CompanyId { get; set; }
+        public Company Company { get; set; } = null!;
 
         [Required]
         [ForeignKey(nameof(VehicleCategory))]

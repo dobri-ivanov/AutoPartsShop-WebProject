@@ -1,17 +1,30 @@
 ﻿@using AutoPartsShop.Data.Models;
+@using AutoPartsShop.Services.Data.Interfaces;
+@using AutoPartsShop.Services.Data;
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject ISellerService SellerService
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-    //Additional condition
-        //
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Seller" asp-action="Apply">Become seller</a>
-        </li>
-                //
+        var user = await UserManager.GetUserAsync(User);
+        var userId = user.Id;
+        if (await SellerService.IsSeller(userId))
+        {
+            Guid companyId = await SellerService.CompanyId(userId);
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-route-id="@companyId" asp-controller="Company" asp-action="Overview">Your Company</a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Company" asp-action="Create">Register your company</a>
+            </li>
+        }
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
         </li>

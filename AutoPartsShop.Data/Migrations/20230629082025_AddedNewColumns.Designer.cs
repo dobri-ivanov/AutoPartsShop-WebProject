@@ -4,6 +4,7 @@ using AutoPartsShop.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoPartsShop.Data.Migrations
 {
     [DbContext(typeof(AutoPartsDbContext))]
-    partial class AutoPartsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230629082025_AddedNewColumns")]
+    partial class AddedNewColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,7 +154,7 @@ namespace AutoPartsShop.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2f858184-e0e5-4e0f-9fd2-d5251eb30152"),
+                            Id = new Guid("c5c7ae4b-4f80-4f6b-9e58-c95ca5259df3"),
                             Description = "In good condition!",
                             ImageUrl = "https://www.masterparts.com/wp-content/uploads/2020/07/clutch_kit.jpg",
                             Name = "Clutch",
@@ -161,7 +163,7 @@ namespace AutoPartsShop.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("eb84385d-a952-4d29-899b-607dbe1d3227"),
+                            Id = new Guid("cf795f85-6acd-496b-b366-460069b300db"),
                             Description = "In bad condition!",
                             ImageUrl = "https://www.hella.com/partnerworld/assets/images/10032598a.jpg",
                             Name = "Braking pads",

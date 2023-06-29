@@ -1,0 +1,35 @@
+﻿@model CompanyOverviewViewModel
+
+
+<div class="container">
+    <div class="title">
+        <h1 class="text-center">@Model.Name</h1>
+    </div>
+    <div class="btn-group">
+        <a href="/Company/Create" class="btn btn-primary">Create Company</a>
+        <a href="/Company/Edit" class="btn btn-primary">Edit Company</a>
+        <a href="/Company/Delete" class="btn btn-danger">Delete Company</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*@foreach (var employee in model)
+            {
+            <tr>
+            <td>@employee.id</td>
+            <td>@employee.name</td>
+            <td>@employee.email</td>
+            <td>@employee.position</td>
+             </tr>
+            }*@
+        </tbody>
+    </table>
+</div>
+
