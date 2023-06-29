@@ -13,7 +13,7 @@
         private readonly AutoPartsDbContext data;
         public CompanyService(AutoPartsDbContext context)
         {
-                data = context;
+            data = context;
         }
         public async Task CreateAsync(CompanyFormModel companyModel)
         {
@@ -21,7 +21,7 @@
             {
                 Name = companyModel.Name,
                 Address = companyModel.Address,
-                
+
             };
 
             Seller seller = new Seller()
@@ -47,9 +47,9 @@
             {
                 companyFormModel = new CompanyFormModel()
                 {
-                   Id = companyId,
-                   Name = company.Name,
-                   Address = company.Address,
+                    Id = companyId,
+                    Name = company.Name,
+                    Address = company.Address,
                 };
 
                 Seller owner = await data.Sellers.FirstAsync(s => s.CompanyId == companyId && s.IsOwner);
@@ -68,10 +68,10 @@
         {
             Company company = await data.Companies.FirstAsync(c => c.Id == companyId);
 
-            if(company != null)
+            if (company != null)
             {
                 company.Name = formModel.Name;
-                company.Address = formModel.Address;      
+                company.Address = formModel.Address;
             }
 
             Seller owner = await data.Sellers.FirstAsync(c => c.CompanyId == companyId && c.IsOwner);
@@ -103,6 +103,7 @@
                     .OrderByDescending(s => s.IsOwner)
                     .Select(s => new SellerViewModel()
                     {
+                        Id = s.Id,
                         UserName = s.FirstName + " " + s.LastName,
                         PhoneNumber = s.PhoneNumber,
                         Position = s.IsOwner == true ? "Owner" : "Employee"

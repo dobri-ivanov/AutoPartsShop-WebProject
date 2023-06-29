@@ -75,11 +75,12 @@
                         {
                             if (item.Position != "Owner")
                             {
-                                <button class="btn rounded-btn btn-danger">Fire</button>
+                                <a href="/Company/asd/@item.Id" class="btn rounded-btn btn-danger">Fire</a>
+                              
                             }
                             else
                             {
-                                <button class="btn rounded-btn btn-info">Manage</button>
+                                <a href="/Company/Edit/@Model.Id" class="btn rounded-btn btn-info">Manage</a>                    
                             }
                         }
                     </td>
