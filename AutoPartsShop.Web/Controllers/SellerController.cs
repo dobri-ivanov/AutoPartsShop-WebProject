@@ -18,7 +18,7 @@ namespace AutoPartsShop.Web.Controllers
         {
             if (!await sellerService.IsOwner(CurrentUserId(), id))
             {
-                RedirectToAction("Overview", "Company", new { id = id });
+                return RedirectToAction("Overview", "Company", new { id = id });
             }
 
             SellerFormModel model = new SellerFormModel()
@@ -33,7 +33,7 @@ namespace AutoPartsShop.Web.Controllers
         {
             if (!await sellerService.IsOwner(CurrentUserId(), id))
             {
-                RedirectToAction("Overview", "Company", new {id = id});
+                return RedirectToAction("Overview", "Company", new {id = id});
             }
 
             if (!ModelState.IsValid)
@@ -81,12 +81,12 @@ namespace AutoPartsShop.Web.Controllers
 
             if (companyId == Guid.Empty)
             {
-                RedirectToAction("Overview", "Company", new {id = companyId});
+                return RedirectToAction("Overview", "Company", new {id = companyId});
             }
 
             if (!await sellerService.IsOwner(CurrentUserId(), companyId))
             {
-                RedirectToAction("Overview", "Company", new { id = companyId });
+                return RedirectToAction("Overview", "Company", new { id = companyId });
             }
 
             if (!ModelState.IsValid)
@@ -107,16 +107,36 @@ namespace AutoPartsShop.Web.Controllers
 
             if (companyId == Guid.Empty)
             {
-                RedirectToAction("Overview", "Company", new { id = companyId });
+                return RedirectToAction("Overview", "Company", new { id = companyId });
             }
 
             if (!await sellerService.IsOwner(CurrentUserId(), companyId))
             {
-                RedirectToAction("Overview", "Company");
+                return RedirectToAction("Overview", "Company", new { id = companyId });
             }          
 
             SellerFormModel model = await sellerService.DeleteDataAsync(id);
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Remove(Guid id)
+        {
+            Guid companyId = await sellerService.CompanyIdBySellerId(id);
+
+            if (companyId == Guid.Empty)
+            {
+                return RedirectToAction("Overview", "Company", new { id = companyId });
+            }
+
+            if (!await sellerService.IsOwner(CurrentUserId(), companyId))
+            {
+                return RedirectToAction("Overview", "Company", new { id = companyId });
+            }
+
+            await sellerService.DeleteAsync(id);
+            return RedirectToAction("Overview", "Company", new { id = companyId });
+        }
+
     }
 }

@@ -12,7 +12,8 @@
         public Task AddEmployeeAsync(SellerFormModel formModel);
         public Task<SellerEditFormModel> EditDataAsync(Guid sellerId);
         public Task EditAsync(Guid sellerId, SellerEditFormModel formModel);
-        public Task<SellerFormModel> DeleteAsync(Guid sellerId);
+        public Task<SellerFormModel> DeleteDataAsync(Guid sellerId);
+        public Task DeleteAsync(Guid sellerId);
     }
 
 }

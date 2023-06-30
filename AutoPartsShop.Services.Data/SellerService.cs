@@ -53,6 +53,18 @@
             return Guid.Empty;
         }
 
+        public async Task DeleteAsync(Guid sellerId)
+        {
+            Seller seller = await data.Sellers.FirstAsync(s => s.Id == sellerId);
+
+            if (seller != null)
+            {
+                data.Sellers.Remove(seller);
+            }
+
+            await data.SaveChangesAsync();
+        }
+
         public async Task<SellerFormModel> DeleteDataAsync(Guid sellerId)
         {
             Seller seller = await data.Sellers.FirstAsync(s => s.Id == sellerId);
@@ -81,10 +93,13 @@
         {
             Seller seller = await data.Sellers.FirstAsync(s => s.Id == sellerId);
 
-            seller.FirstName = formModel.FirstName;
-            seller.LastName = formModel.LastName;
-            seller.PhoneNumber = formModel.PhoneNumber;
-            seller.IsOwner = formModel.IsOwner;
+            if (seller != null)
+            {
+                seller.FirstName = formModel.FirstName;
+                seller.LastName = formModel.LastName;
+                seller.PhoneNumber = formModel.PhoneNumber;
+                seller.IsOwner = formModel.IsOwner;
+            }
 
             await data.SaveChangesAsync();
         }
