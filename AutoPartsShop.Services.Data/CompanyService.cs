@@ -1,7 +1,7 @@
 ﻿namespace AutoPartsShop.Services.Data
 {
     using Microsoft.EntityFrameworkCore;
-    
+
     using AutoPartsShop.Data.Models;
     using AutoPartsShop.Web.Data;
     using AutoPartsShop.Web.ViewModels.Company;
@@ -19,6 +19,7 @@
         {
             Company company = new Company()
             {
+                Id = companyModel.Id,
                 Name = companyModel.Name,
                 Address = companyModel.Address,
 
@@ -64,9 +65,13 @@
 
         public async Task DeleteCompanyFromDatabaseAsync(Guid companyId)
         {
-            Company company = await data.Companies.FirstAsync(c => c.Id == companyId);
+            Company company = await data.Companies.FirstOrDefaultAsync(c => c.Id == companyId);
 
-            data.Companies.Remove(company);
+            if (company != null)
+            {
+                data.Companies.Remove(company);
+
+            }
             await data.SaveChangesAsync();
         }
 
@@ -75,23 +80,29 @@
             Company company = await data.Companies
                 .Include(c => c.Sellers)
                 .FirstAsync(c => c.Id == companyId);
+
             CompanyFormModel companyFormModel = new CompanyFormModel();
             if (company != null)
             {
-                companyFormModel = new CompanyFormModel()
+                companyFormModel = new CompanyFormModel();
+                if (company != null)
                 {
-                    Id = companyId,
-                    Name = company.Name,
-                    Address = company.Address,
-                };
+                    companyFormModel = new CompanyFormModel()
+                    {
+                        Id = companyId,
+                        Name = company.Name,
+                        Address = company.Address,
+                    };
 
-                Seller owner = await data.Sellers.FirstAsync(s => s.CompanyId == companyId && s.IsOwner);
-                if (owner != null)
-                {
-                    companyFormModel.FirstName = owner.FirstName;
-                    companyFormModel.LastName = owner.LastName;
-                    companyFormModel.PhoneNumber = owner.PhoneNumber;
+                    Seller owner = await data.Sellers.FirstAsync(s => s.CompanyId == companyId && s.IsOwner);
+                    if (owner != null)
+                    {
+                        companyFormModel.FirstName = owner.FirstName;
+                        companyFormModel.LastName = owner.LastName;
+                        companyFormModel.PhoneNumber = owner.PhoneNumber;
+                    }
                 }
+
             }
 
             return companyFormModel;

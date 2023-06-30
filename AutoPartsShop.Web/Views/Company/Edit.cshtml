@@ -39,7 +39,9 @@
                 <input asp-for="@Model.PhoneNumber" class="form-control" aria-required="true" />
                 <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
             </div>
-                <input class="btn-lg btn-primary" type="submit" value="Save" />
+            <input class="btn btn-primary" type="submit" value="Save" />
+            <input onclick="history.back()" class="btn btn-secondary" type="button" value="Cancel" />
+            
         </form>
     </div>
 </div>

@@ -37,10 +37,12 @@
                 return View(formModel);
             }
 
+            
             formModel.CurrentUserId = CurrentUserId();
+            formModel.Id = Guid.NewGuid();
             await companyService.CreateAsync(formModel);
 
-            return RedirectToAction("All", "Part");
+            return RedirectToAction("Overview", new { id = formModel.Id });
         }
 
         [HttpGet]
@@ -59,7 +61,7 @@
         {
             if (!await sellerService.IsOwner(CurrentUserId(), id))
             {
-                return RedirectToAction("Overview", "Company");
+                return RedirectToAction("Overview", new { id = id });
             }
 
             CompanyFormModel formModel = await companyService.EditCompanyAsync(id);
@@ -72,7 +74,7 @@
         {
             if (!await sellerService.IsOwner(CurrentUserId(), id))
             {
-                return RedirectToAction("Overview", "Company");
+                return RedirectToAction("Overview", new { id = id });
             }
 
             await companyService.EditCompanyAsync(id, formModel);
@@ -85,7 +87,7 @@
         {
             if (!await sellerService.IsOwner(CurrentUserId(), id))
             {
-                return RedirectToAction("Overview", "Company");
+                return RedirectToAction("Overview", new { id = id });
             }
 
             CompanyDeleteViewModel viewModel = await companyService.DeleteCompanyAsync(id);
@@ -98,7 +100,7 @@
         {
             if (!await sellerService.IsOwner(CurrentUserId(), id))
             {
-                return RedirectToAction("Overview", "Company");
+                return RedirectToAction("Overview", new { id = id });
             }
 
             await companyService.DeleteCompanyFromDatabaseAsync(id);
