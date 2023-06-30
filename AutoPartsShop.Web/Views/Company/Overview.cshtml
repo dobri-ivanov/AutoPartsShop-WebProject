@@ -48,7 +48,7 @@
             var userId = user.Id;
             if (await SellerService.IsOwner(userId, Model.Id))
             {
-                <a href="/Company/Create" class="btn rounded-btn btn-secondary mr-2">Add Employee</a>
+                <a href="/Seller/Add/@Model.Id" class="btn rounded-btn btn-secondary mr-2">Add Employee</a>
                 <a href="/Company/Edit/@Model.Id" class="btn rounded-btn btn-secondary">Edit Company</a>
                 <a href="/Company/Delete/@Model.Id" class="btn rounded-btn btn-danger ">Delete Company</a>
             }
@@ -76,12 +76,14 @@
                         {
                             if (item.Position != "Owner")
                             {
-                                <a href="/Company/asd/@item.Id" class="btn rounded-btn btn-danger">Fire</a>
+                                <a href="/Seller/Edit/@item.Id" class="btn rounded-btn btn-primary">Edit</a>
+                                <a href="/Seller/Fire/@item.Id" class="btn rounded-btn btn-danger">Fire</a>
 
                             }
                             else
                             {
-                                <a href="/Company/Edit/@Model.Id" class="btn rounded-btn btn-info">Manage</a>
+                                <a href="/Seller/Edit/@item.Id" class="btn rounded-btn btn-primary">Edit</a>
+                                @*<a href="/Company/Edit/@Model.Id" class="btn rounded-btn btn-info">Manage</a>*@
                             }
                         }
                     </td>

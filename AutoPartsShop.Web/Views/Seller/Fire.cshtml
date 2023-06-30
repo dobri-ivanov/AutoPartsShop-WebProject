@@ -1,0 +1,42 @@
+﻿@using AutoPartsShop.Web.ViewModels.Seller;
+@model SellerFormModel
+
+@{
+    ViewBag.Title = "Fire employee";
+}
+
+<h1>Delete Employee</h1>
+
+<h2>Are you sure you want to delete the following employee?</h2>
+
+<dl class="row">
+    <dt class="col-sm-2">
+        Employee Email
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Email
+    </dd>
+
+    <dt class="col-sm-2">
+        Name
+    </dt>
+    <dd class="col-sm-10">
+        @(Model.FirstName + " " + Model.LastName)
+    </dd>
+
+    <dt class="col-sm-2">
+        Phone number
+    </dt>
+    <dd class="col-sm-10">
+        @Model.PhoneNumber
+    </dd>
+</dl>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a href="/Company/Overview/@Model.Company" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

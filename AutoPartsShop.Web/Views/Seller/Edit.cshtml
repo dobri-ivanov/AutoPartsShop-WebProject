@@ -1,0 +1,70 @@
+﻿@using AutoPartsShop.Web.ViewModels.Seller;
+@model SellerEditFormModel
+
+@{
+    ViewData["Title"] = "Add employee";
+    var companyId = Model.Company;
+}
+
+<style>
+    body {
+        background-image: url("https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg");
+    }
+</style>
+<div class="container">
+    @if (Model.IsOwner)
+    {
+        <h1 class=" text-center">Edit owner data</h1>
+    }
+    else
+    {
+        <h1 class=" text-center">Edit employee</h1>
+    }
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-action="Edit" method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.FirstName" class="form-label">First Name</label>
+                <input asp-for="@Model.FirstName" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LastName" class="form-label">Last Name</label>
+                <input asp-for="@Model.LastName" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.PhoneNumber" class="form-label">Phone number</label>
+                <input asp-for="@Model.PhoneNumber" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            </div>
+            @if (!Model.IsOwner)
+            {
+                <div class="form-check">
+                    <input asp-for="@Model.IsOwner" class="form-check-input">
+                    <label asp-for="@Model.IsOwner" class="form-check-label">
+                        Employee is Owner (Has <b>Full Permissions</b>)
+                    </label>
+                    <span asp-validation-for="@Model.IsOwner" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div style="display:none" class="form-check">
+                    <input asp-for="@Model.IsOwner" class="form-check-input">
+                    <label asp-for="@Model.IsOwner" class="form-check-label">
+                        Employee is Owner (Has <b>Full Permissions</b>)
+                    </label>
+                    <span asp-validation-for="@Model.IsOwner" class="text-danger"></span>
+                </div>
+            }
+            <div class="mb-3">
+                <input class="btn btn-primary" style="margin-top: 1.5%;" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
