@@ -23,6 +23,7 @@ namespace AutoPartsShop.Web
            builder.Services.AddApplicationServices(typeof(IPartService));
            builder.Services.AddApplicationServices(typeof(ICompanyService));
            builder.Services.AddApplicationServices(typeof(ISellerService));
+           builder.Services.AddApplicationServices(typeof(IVehicleCategoryService));
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
             {

@@ -40,7 +40,7 @@
     </div>
     <div class="btn-group">
         @{
-            <a href="/Company/Create" class="btn  rounded-btn btn-primary">Add Vehicle</a>
+            <a href="/Vehicle/Add/@Model.Id" class="btn  rounded-btn btn-primary">Add Vehicle</a>
             <a href="/Company/Edit" class="btn rounded-btn btn-primary">Add Part</a>
 
 
@@ -91,5 +91,25 @@
             }
         </tbody>
     </table>
+    <h2>Vehicles</h2>
+    <div class="row">
+        @*@foreach (var ad in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <h3 class="card-title text-center">@ad.Name</h3>
+                    <img src="@ad.ImageUrl" class="card-img-top" alt="Auto Part Image">
+                    <div class="card-body">
+                        <h5 class="card-text">@ad.Vehicle</h5>
+                        <p class="card-text">Price: $@ad.Price</p>
+                        <p class="card-text">Seller: @ad.Seller</p>
+                        <a href="#" class="btn btn-primary">Buy</a>
+                        <a href="#" class="btn btn-secondary">Info</a>
+                        <a href="#" class="btn btn-info contact-seller">Seller</a>
+                    </div>
+                </div>
+            </div>
+        }*@
+    </div>
 </div>
 

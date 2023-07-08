@@ -144,6 +144,13 @@
 
         }
 
+        public async Task<bool> IsSeller(Guid userId, Guid companyId)
+        {
+
+            return await data.Sellers.AnyAsync(s => s.UserId == userId && s.CompanyId == companyId);
+
+        }
+
         public async Task<Guid> IsValidEmployee(string email)
         {
             if (email == null) return Guid.Empty;

@@ -9,10 +9,13 @@
 
         public class Vehicle
         {
+            public const int VehicleMakeMinLength = 1;
             public const int VehicleMakeMaxLength = 15;
 
+            public const int VehicleModelMinLength = 1;
             public const int VehicleModelMaxLength = 40;
 
+            public const int VehicleModificationMinLength = 5;
             public const int VehicleModificationMaxLength = 70;
         }
 

@@ -1,0 +1,64 @@
+﻿@using AutoPartsShop.Web.ViewModels.Vehicle;
+@model VehicleFormModel
+
+@{
+    ViewData["Title"] = "Add vehicle";
+}
+<h2>Add New Vehicle</h2>
+
+<style>
+    body {
+        background-image: url("https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg");
+    }
+</style>
+<form asp-action="Add" asp-controller="Vehicle" method="post">
+    <div class="form-group">
+        <label asp-for="Make">Make:</label>
+        <input asp-for="Make" class="form-control" />
+        <span asp-validation-for="Make" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Model">Model:</label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CategoryId" class="form-label">Category</label>
+        <select asp-for="CategoryId" class="form-control">
+            @foreach (var board in Model.Categories)
+            {
+                <option value="@board.Id">@board.Name</option>
+            }
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProductionDate">Production Date:</label>
+        @{
+            string date = @DateTime.UtcNow.ToString("yyyy-mm-dd");
+            <input asp-for="ProductionDate" class="form-control" type="date" value="@date" />
+        }
+        <span asp-validation-for="ProductionDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Modification">Modification:</label>
+        <input asp-for="Modification" class="form-control" rows="3" />
+        <span asp-validation-for="Modification" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageUrl">Image URL:</label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <button type="submit" style="margin-top: 1.5%;" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
