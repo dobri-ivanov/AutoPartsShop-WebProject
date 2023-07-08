@@ -7,6 +7,10 @@
     
     public class Vehicle
     {
+        public Vehicle()
+        {
+            this.Id = Guid.NewGuid();
+        }
         [Key]
         public Guid Id { get; set; }
 
@@ -31,7 +35,7 @@
         public virtual VehicleCategory VehicleCategory { get; set; } = null!;
 
         [Required]
-        public DateTime ProductionDate { get; set; }
+        public string ProductionDate { get; set; }
 
         [Required]
         [MaxLength(VehicleModificationMaxLength)]

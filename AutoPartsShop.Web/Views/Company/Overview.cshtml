@@ -31,6 +31,16 @@
         padding: 10px 20px;
         text-decoration: none;
     }
+
+    img {
+        height: 250px;
+        width:auto;
+        max-width: 500px;
+    }
+
+    .contact-seller {
+        float: right;
+    }
 </style>
 
 <div class="container">
@@ -78,12 +88,10 @@
                             {
                                 <a href="/Seller/Edit/@item.Id" class="btn rounded-btn btn-primary">Edit</a>
                                 <a href="/Seller/Fire/@item.Id" class="btn rounded-btn btn-danger">Fire</a>
-
                             }
                             else
                             {
                                 <a href="/Seller/Edit/@item.Id" class="btn rounded-btn btn-primary">Edit</a>
-                                @*<a href="/Company/Edit/@Model.Id" class="btn rounded-btn btn-info">Manage</a>*@
                             }
                         }
                     </td>
@@ -91,25 +99,29 @@
             }
         </tbody>
     </table>
-    <h2>Vehicles</h2>
+    <h2 style="margin-top: 4.5%;">Vehicles</h2>
     <div class="row">
-        @*@foreach (var ad in Model)
+        @foreach (var v in Model.Vehicles)
         {
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <h3 class="card-title text-center">@ad.Name</h3>
-                    <img src="@ad.ImageUrl" class="card-img-top" alt="Auto Part Image">
+                    <h3 class="card-title text-center">@v.MakeAndModel</h3>
+                    <img  src="@v.ImageUrl" class="card-img-top" alt="Auto Part Image" t>
                     <div class="card-body">
-                        <h5 class="card-text">@ad.Vehicle</h5>
-                        <p class="card-text">Price: $@ad.Price</p>
-                        <p class="card-text">Seller: @ad.Seller</p>
-                        <a href="#" class="btn btn-primary">Buy</a>
-                        <a href="#" class="btn btn-secondary">Info</a>
-                        <a href="#" class="btn btn-info contact-seller">Seller</a>
+                        <h5 class="card-text">@v.Modification</h5>
+                        <a href="#" class="btn btn-secondary">View</a>
+                        <a href="/Vehicle/Edit/@v.Id" class="btn btn-primary">Edit</a>
+
+                        @if (await SellerService.IsOwner(userId, Model.Id))
+                        {
+
+                            <a href="#" class="btn btn-danger contact-seller">Delete</a>
+
+                        }
                     </div>
                 </div>
             </div>
-        }*@
+        }
     </div>
 </div>
 

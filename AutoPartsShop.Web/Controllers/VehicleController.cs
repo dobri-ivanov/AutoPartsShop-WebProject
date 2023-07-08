@@ -38,14 +38,46 @@ namespace AutoPartsShop.Web.Controllers
                 return View(formModel);
             }
 
-            if (await sellerService.IsSeller(CurrentUserId(), id))
+            if (!await sellerService.IsSeller(CurrentUserId(), id))
+            {
+                return Unauthorized();
+            }
+            formModel.CompanyId = id;
+            await vehicleService.AddAsync(formModel);
+
+            return RedirectToAction("Overview", "Company", new { id = id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            VehicleFormModel model = await vehicleService.GetDataForEditAsync(id);
+
+            if (model == null!)
+            {
+                return NotFound();
+            }
+            if (!await sellerService.IsSeller(CurrentUserId(), model.CompanyId))
             {
                 return Unauthorized();
             }
 
-            await vehicleService.Add(formModel);
+            model.Categories = await categoryService.AllAsync();
+            return View(model);
+        }
 
-            return RedirectToAction("Overview", "Company", new { id = id });
+        [HttpPost]
+        public async Task<IActionResult> Edit(Guid id, VehicleFormModel formModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                formModel.Categories = await categoryService.AllAsync();
+                return View(formModel);
+            }
+
+            await vehicleService.EditSaveChanges(id, formModel);
+            var vehicle = await vehicleService.GetDataForEditAsync(id);
+            return RedirectToAction("Overview", "Company", new { id = vehicle.CompanyId });
         }
     }
 }

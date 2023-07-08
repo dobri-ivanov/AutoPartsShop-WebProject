@@ -22,7 +22,7 @@
                 Make = "Audi",
                 Model = "A6",
                 CategoryId = 1,
-                ProductionDate = new DateTime(2015, 01, 01),
+                ProductionDate = "2015",
                 Modification = "3.0 TDI 313hp",
                 ImageUrl = "https://www.netcarshow.com/Audi-A6-2015.jpg",
                 CompanyId = Guid.Parse("89caa742-325e-4dbb-9176-d52f7706684a")
@@ -35,7 +35,7 @@
                 Make = "BMW",
                 Model = "530",
                 CategoryId = 1,
-                ProductionDate = new DateTime(2008, 01, 01),
+                ProductionDate = "2008",
                 Modification = "3.0 214hp",
                 ImageUrl = "https://www.auto-data.net/images/f126/BMW-5-Series-E60.jpg",
                 CompanyId = Guid.Parse("89caa742-325e-4dbb-9176-d52f7706684a")

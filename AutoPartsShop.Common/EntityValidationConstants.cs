@@ -17,6 +17,9 @@
 
             public const int VehicleModificationMinLength = 5;
             public const int VehicleModificationMaxLength = 70;
+
+            public const int VehicleProductionYearMinLength = 4;
+            public const int VehicleProductionYearMaxLength = 4;
         }
 
         public class Part

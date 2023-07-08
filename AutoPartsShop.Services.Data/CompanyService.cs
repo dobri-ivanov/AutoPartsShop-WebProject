@@ -11,9 +11,11 @@
     public class CompanyService : ICompanyService
     {
         private readonly AutoPartsDbContext data;
-        public CompanyService(AutoPartsDbContext context)
+        private readonly IVehicleService vehicleService;
+        public CompanyService(AutoPartsDbContext context, IVehicleService vehicleService)
         {
             data = context;
+            this.vehicleService = vehicleService;
         }
         public async Task CreateAsync(CompanyFormModel companyModel)
         {
@@ -143,10 +145,11 @@
             if (company != null)
             {
                 CompanyOverviewViewModel companyOverviewViewModel = new CompanyOverviewViewModel()
-                {
+                {                  
                     Id = companyId,
                     Name = company.Name,
                     Address = company.Address,
+                    Vehicles = await vehicleService.FindAllAsync(companyId),
                     Sellers = company.Sellers
                     .OrderByDescending(s => s.IsOwner)
                     .Select(s => new SellerViewModel()
