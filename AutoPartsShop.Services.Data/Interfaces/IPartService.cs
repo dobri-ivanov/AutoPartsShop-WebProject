@@ -5,5 +5,6 @@
     public interface IPartService
     {
         public Task<IEnumerable<PartViewModel>> All();
+        public Task AddSaveChangesAsync(PartFormModel formModel);
     }
 }

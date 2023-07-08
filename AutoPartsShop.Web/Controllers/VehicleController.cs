@@ -79,5 +79,32 @@ namespace AutoPartsShop.Web.Controllers
             var vehicle = await vehicleService.GetDataForEditAsync(id);
             return RedirectToAction("Overview", "Company", new { id = vehicle.CompanyId });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            VehicleDeleteViewModel model = await vehicleService.GetDataForDeleteAsync(id);
+
+            if (!await sellerService.IsOwner(CurrentUserId(), model.CompanyId))
+            {
+                return Unauthorized();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(Guid id)
+        {
+            VehicleDeleteViewModel model = await vehicleService.GetDataForDeleteAsync(id);
+
+            if (!await sellerService.IsOwner(CurrentUserId(), model.CompanyId))
+            {
+                return Unauthorized();
+            }
+            await vehicleService.DeleteSaveChangesAsync(id);
+
+            return RedirectToAction("Overview", "Company", new { id = model.CompanyId });
+        }
     }
 }

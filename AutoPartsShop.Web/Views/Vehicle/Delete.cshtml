@@ -1,0 +1,36 @@
+﻿@using AutoPartsShop.Web.ViewModels.Vehicle;
+@model VehicleDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete Vehicle";
+}
+
+<h2>Delete Vehicle</h2>
+
+<div>
+    <h4>Vehicle Details</h4>
+    <img class="card-body col-sm-5" src="@Model.ImageUrl" />
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Make:</dt>
+        <dd class="col-sm-10">@Model.MakeAndModel</dd>
+
+        <dt class="col-sm-2">Model:</dt>
+        <dd class="col-sm-10">@Model.Model</dd>
+
+        <dt class="col-sm-2">Year:</dt>
+        <dd class="col-sm-10">@Model.Year</dd>
+
+        <dt class="col-sm-2">Modification:</dt>
+        <dd class="col-sm-10">@Model.Modification</dd>
+    </dl>
+
+    <form method="post" asp-action="DeleteConfirmation">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a onclick="history.back()" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

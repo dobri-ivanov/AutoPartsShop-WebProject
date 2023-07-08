@@ -51,7 +51,7 @@
     <div class="btn-group">
         @{
             <a href="/Vehicle/Add/@Model.Id" class="btn  rounded-btn btn-primary">Add Vehicle</a>
-            <a href="/Company/Edit" class="btn rounded-btn btn-primary">Add Part</a>
+            <a href="/Part/Add/@Model.Id" class="btn rounded-btn btn-primary">Add Part</a>
 
 
             var user = await UserManager.GetUserAsync(User);
@@ -115,7 +115,7 @@
                         @if (await SellerService.IsOwner(userId, Model.Id))
                         {
 
-                            <a href="#" class="btn btn-danger contact-seller">Delete</a>
+                            <a href="/Vehicle/Delete/@v.Id" class="btn btn-danger contact-seller">Delete</a>
 
                         }
                     </div>
