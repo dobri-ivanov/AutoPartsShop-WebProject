@@ -24,6 +24,7 @@
 
         public class Part
         {
+            public const int PartNameMinLength = 3;
             public const int PartNameMaxLength = 15;
 
             public const int PartDescriptionMaxLength = 300;

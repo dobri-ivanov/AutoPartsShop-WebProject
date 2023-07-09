@@ -67,7 +67,7 @@
 
         public async Task DeleteCompanyFromDatabaseAsync(Guid companyId)
         {
-            Company company = await data.Companies.FirstOrDefaultAsync(c => c.Id == companyId);
+            Company company = await data.Companies.FirstAsync(c => c.Id == companyId);
 
             if (company != null)
             {

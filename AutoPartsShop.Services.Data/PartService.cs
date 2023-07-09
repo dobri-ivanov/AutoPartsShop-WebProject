@@ -24,7 +24,7 @@
                 Description = formModel.Description,
                 Price = formModel.Price,
                 VehicleId = formModel.VehicleId,
-                ImageUrl = formModel.ImageUrl,
+                ImageUrl = formModel.ImageUrl
             };
 
             await data.Parts.AddAsync(part);

@@ -18,7 +18,6 @@
             this.partService = service;
             this.vehicleService = vehicleService;
             this.sellerService = sellerService;
-
         }
 
         [HttpGet]
