@@ -21,10 +21,12 @@
 
 <div>
     <form asp-action="Index" method="get">
-        <div class="form-group">
-            <input type="text" name="search" placeholder="Search" class="form-control" />
+        <div class="input-group col-md-4">
+            <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
 

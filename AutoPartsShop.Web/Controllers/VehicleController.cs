@@ -106,5 +106,18 @@ namespace AutoPartsShop.Web.Controllers
 
             return RedirectToAction("Overview", "Company", new { id = model.CompanyId });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            VehicleDetailsViewModel model = await vehicleService.VehicleDetailsAsync(id);
+
+            if (!await sellerService.IsSeller(CurrentUserId(), model.CompanyId))
+            {
+                return Unauthorized();
+            }
+
+            return View(model);
+        }
     }
 }

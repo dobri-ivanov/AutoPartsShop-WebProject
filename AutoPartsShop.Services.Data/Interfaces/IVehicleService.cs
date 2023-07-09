@@ -12,5 +12,6 @@ namespace AutoPartsShop.Services.Data.Interfaces
         public Task<VehicleDeleteViewModel> GetDataForDeleteAsync(Guid id);
         public Task DeleteSaveChangesAsync(Guid id);
         public Task<ICollection<VehicleChooseViewModel>> SelectVehicles(Guid id);
+        public Task<VehicleDetailsViewModel> VehicleDetailsAsync(Guid id);
     }
 }

@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@using AutoPartsShop.Data.Models;
+@using AutoPartsShop.Services.Data.Interfaces;
+@using AutoPartsShop.Web.ViewModels.Vehicle;
+
+@model VehicleDetailsViewModel
+
+@inject UserManager<ApplicationUser> UserManager
+@inject ISellerService SellerService
+
+@{
+    ViewData["Title"] = "Vehicle Details";
+}
+<style>
+    body {
+        background-image: url("https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg");
+    }
+
+    .card {
+        border: 0.1rem solid;
+        border-color: gray;
+    }
+
+</style>
+<h1 style="margin-bottom: 2.5%;" class="text-center">Vehicle Details</h1>
+<a style="margin-bottom: 2.5%;" onclick="history.back()" class="btn btn-secondary">Back</a>
+<div>
+    <div class="row">
+        <div class="col-md-5">
+            <dl class="row">
+                <dt class="col-md-2">Make:</dt>
+                <dd class="col-md-12">@Model.Make</dd>
+
+                <dt class="col-md-2">Model:</dt>
+                <dd class="col-md-12">@Model.Model</dd>
+
+                <dt class="col-md-2">Year:</dt>
+                <dd class="col-md-12">@Model.Year</dd>
+
+                <dt class="col-md-2">Modification:</dt>
+                <dd class="col-md-12">@Model.Modification</dd>
+            </dl>
+        </div>
+        <div class="col-md-5">
+            <img style="width: 350px;"class="card-body col-sm-5" src="@Model.ImageUrl" />
+        </div>
+    </div>
+    <hr/>
+        <h2 style="margin-bottom: 3.5%;" class="text-center">Parts</h2>
+    <div class="container">
+        <div class="row">
+            @foreach (var ad in Model.Parts)
+            {
+                <div class="col-md-3 mb-2">
+                    <div class="card">
+                        <h3 class="card-title text-center">@ad.Name</h3>
+                        <img src="@ad.ImageUrl" class="card-img-top" alt="Auto Part Image">
+                        <div class="card-body">
+                            <p class="card-text">Price: $@ad.Price</p>
+                            <a href="#" class="btn btn-secondary">View</a>
+                            <a href="#" class="btn btn-primary">Edit</a>
+                            @{
+                                var user = await UserManager.GetUserAsync(User);
+                                var userId = user.Id;
+                                if (await SellerService.IsOwner(userId, Model.CompanyId))
+                                {
+                                    <a href="#" style="float:right;" class="btn btn-danger">Delete</a>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

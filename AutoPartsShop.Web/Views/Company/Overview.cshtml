@@ -41,6 +41,12 @@
     .contact-seller {
         float: right;
     }
+
+    .card {
+        border: 0.1rem solid;
+        border-color: gray;
+    }
+
 </style>
 
 <div class="container">
@@ -105,11 +111,11 @@
         {
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <h3 class="card-title text-center">@v.MakeAndModel</h3>
-                    <img  src="@v.ImageUrl" class="card-img-top" alt="Auto Part Image" t>
+                    <h3 style="margin-bottom: 2.0%;" class="card-title text-center">@v.MakeAndModel</h3>
+                    <img  src="@v.ImageUrl" class="card-img-top" alt="Auto Part Image">
                     <div class="card-body">
                         <h5 class="card-text">@v.Modification</h5>
-                        <a href="#" class="btn btn-secondary">View</a>
+                        <a href="/Vehicle/Details/@v.Id" class="btn btn-secondary">View</a>
                         <a href="/Vehicle/Edit/@v.Id" class="btn btn-primary">Edit</a>
 
                         @if (await SellerService.IsOwner(userId, Model.Id))

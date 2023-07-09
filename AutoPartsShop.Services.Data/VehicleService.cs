@@ -1,6 +1,7 @@
 ﻿using AutoPartsShop.Data.Models;
 using AutoPartsShop.Services.Data.Interfaces;
 using AutoPartsShop.Web.Data;
+using AutoPartsShop.Web.ViewModels.Part;
 using AutoPartsShop.Web.ViewModels.Vehicle;
 using AutoPartsShop.Web.ViewModels.Vehicles;
 using Microsoft.EntityFrameworkCore;
@@ -90,7 +91,7 @@ namespace AutoPartsShop.Services.Data
                     Id = vehicle.Id,
                     ImageUrl = vehicle.ImageUrl,
                     CompanyId = vehicle.CompanyId
-                    
+
                 };
 
                 return viewModel;
@@ -134,5 +135,43 @@ namespace AutoPartsShop.Services.Data
 
             return vehicles;
         }
+
+        public async Task<VehicleDetailsViewModel> VehicleDetailsAsync(Guid id)
+        {
+            var v = await data.Vehicles
+                .Include(v => v.Parts)
+                .FirstAsync(v => v.Id == id);
+
+            if (v != null)
+            {
+                VehicleDetailsViewModel model = new VehicleDetailsViewModel()
+                {
+                    Id = id,
+                    Make = v.Make,
+                    Model = v.Model,
+                    Year = v.ProductionDate,
+                    CompanyId = v.CompanyId,
+                    Modification = v.Modification,
+                    ImageUrl = v.ImageUrl,
+                    Parts = v.Parts
+                    .Select(p => new VehiclePartsViewModel()
+                    {
+                        Id = p.Id,
+                        Name = p.Name,
+                        ImageUrl = p.ImageUrl,
+                        Price = p.Price
+                    })
+                    .ToList()
+                };
+
+                return model;
+            }
+            return null;
+        }
+
     }
 }
+
+
+
+
