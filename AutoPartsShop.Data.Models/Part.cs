@@ -18,8 +18,6 @@
         [MaxLength(PartNameMaxLength)]
         public string Name { get; set; } = null!;
 
-        [Required]
-        [MaxLength(PartDescriptionMaxLength)]
         public string? Description { get; set; }
 
         public string ImageUrl { get; set; } = null!;

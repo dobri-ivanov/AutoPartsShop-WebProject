@@ -1,7 +1,7 @@
 ﻿namespace AutoPartsShop.Services.Data
 {
     using Microsoft.EntityFrameworkCore;
-    
+
     using AutoPartsShop.Services.Data.Interfaces;
     using AutoPartsShop.Web.Data;
     using AutoPartsShop.Web.ViewModels.Part;
@@ -13,7 +13,7 @@
 
         public PartService(AutoPartsDbContext context)
         {
-                data = context;
+            data = context;
         }
 
         public async Task AddSaveChangesAsync(PartFormModel formModel)
@@ -45,6 +45,103 @@
                .ToListAsync();
 
             return parts;
+        }
+
+        public async Task<Guid> DeleteAsync(Guid id)
+        {
+            if (data.Parts.Any())
+            {
+                Part? part = await data.Parts.FirstAsync(p => p.Id == id);
+
+                if (part != null)
+                {
+                    data.Parts.Remove(part);
+                    await data.SaveChangesAsync();
+                    return part.VehicleId;
+                }
+            }
+
+            return Guid.Empty;
+        }
+
+        public async Task<PartDeleteViewModel?> DeleteDataAsync(Guid id)
+        {
+            if (data.Parts.Any())
+            {
+                Part? part = await data.Parts
+                .Include(p => p.Vehicle)
+                .FirstAsync(p => p.Id == id);
+
+                if (part != null)
+                {
+                    PartDeleteViewModel model = new PartDeleteViewModel()
+                    {
+                        Id = id,
+                        Name = part.Name,
+                        Description = part.Description,
+                        Price = part.Price,
+                        ImageUrl = part.ImageUrl,
+                        Vehicle = part.Vehicle.ToString()
+                    };
+
+                    return model;
+                }
+            }
+
+            return null;
+        }
+
+        public async Task<PartFormModel?> EditDataAsync(Guid id)
+        {
+            if (data.Parts.Any())
+            {
+                Part? part = await data.Parts
+                .Include(p => p.Vehicle)
+                .FirstAsync(p => p.Id == id);
+
+                if (part != null)
+                {
+                    PartFormModel model = new PartFormModel()
+                    {
+                        Id = id,
+                        Name = part.Name,
+                        Description = part.Description,
+                        Price = part.Price,
+                        ImageUrl = part.ImageUrl,
+                        VehicleId = part.VehicleId,
+                        CompanyId = part.Vehicle.CompanyId
+                    };
+
+                    return model;
+                }
+            }
+            return null;
+        }
+
+        public async Task<Guid> EditSaveChangesAsync(Guid id, PartFormModel model)
+        {
+            if (data.Parts.Any())
+            {
+                Part? part = await data.Parts
+                .Include(p => p.Vehicle)
+                .FirstAsync(p => p.Id == id);
+
+                if (part != null)
+                {
+                    part.Name = model.Name; 
+                    part.Description = model.Description;
+                    part.Price = model.Price;
+                    part.ImageUrl = model.ImageUrl;
+
+                    Guid oldVehicleId = part.VehicleId;
+                    part.VehicleId = model.VehicleId;
+
+                    await data.SaveChangesAsync();
+
+                    return oldVehicleId;
+                }
+            }
+            return Guid.Empty;
         }
     }
 }

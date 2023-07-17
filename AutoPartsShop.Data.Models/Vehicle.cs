@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     
     using static AutoPartsShop.Common.EntityValidationConstants.Vehicle;
-    
+
     public class Vehicle
     {
         public Vehicle()
@@ -35,7 +35,7 @@
         public virtual VehicleCategory VehicleCategory { get; set; } = null!;
 
         [Required]
-        public string ProductionDate { get; set; }
+        public string ProductionDate { get; set; } = null!;
 
         [Required]
         [MaxLength(VehicleModificationMaxLength)]
@@ -43,5 +43,9 @@
 
         public virtual ICollection<Part> Parts { get; set; } = null!;
 
+        public override string ToString()
+        {
+            return String.Format($"{Make} {Model} {ProductionDate} {Modification}");
+        }
     }
 }
