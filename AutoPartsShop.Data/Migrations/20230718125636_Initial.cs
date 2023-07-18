@@ -316,24 +316,32 @@ namespace AutoPartsShop.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Vehicles",
-                columns: new[] { "Id", "CategoryId", "CompanyId", "ImageUrl", "Make", "Model", "Modification", "ProductionDate" },
-                values: new object[] { new Guid("b44baa0a-a492-4564-862c-a85384d97d76"), 1, new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "https://www.auto-data.net/images/f126/BMW-5-Series-E60.jpg", "BMW", "530", "3.0 214hp", "2008" });
+                table: "Sellers",
+                columns: new[] { "Id", "CompanyId", "FirstName", "IsOwner", "LastName", "PhoneNumber", "UserId" },
+                values: new object[,]
+                {
+                    { new Guid("0f9df212-c060-4f7f-954f-cdef53549b31"), new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "Gosho", false, "Iliev", "+35955586241", new Guid("8d9c378a-2859-4a3d-9162-08db770024d4") },
+                    { new Guid("33eb18fa-136d-4f29-bc04-b7467e501204"), new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "Pesho", true, "Georgiev", "+35955466254", new Guid("c66b7420-2ac0-47d9-9161-08db770024d4") }
+                });
 
             migrationBuilder.InsertData(
                 table: "Vehicles",
                 columns: new[] { "Id", "CategoryId", "CompanyId", "ImageUrl", "Make", "Model", "Modification", "ProductionDate" },
-                values: new object[] { new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c"), 1, new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "https://www.netcarshow.com/Audi-A6-2015.jpg", "Audi", "A6", "3.0 TDI 313hp", "2015" });
+                values: new object[,]
+                {
+                    { new Guid("b44baa0a-a492-4564-862c-a85384d97d76"), 1, new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "https://www.auto-data.net/images/f126/BMW-5-Series-E60.jpg", "BMW", "530", "3.0 214hp", "2008" },
+                    { new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c"), 1, new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "https://www.netcarshow.com/Audi-A6-2015.jpg", "Audi", "A6", "3.0 TDI 313hp", "2015" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Parts",
                 columns: new[] { "Id", "Description", "ImageUrl", "Name", "Price", "Sold", "VehicleId" },
-                values: new object[] { new Guid("6b836252-e13a-4da1-b412-3cd74f171809"), "In good condition!", "https://www.masterparts.com/wp-content/uploads/2020/07/clutch_kit.jpg", "Clutch", 250m, false, new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c") });
+                values: new object[] { new Guid("d089065c-d586-43b3-9be5-8994413454c8"), "In bad condition!", "https://images.cdn.circlesix.co/image/1/640/0/uploads/posts/2016/12/f184c93f6f87bd88c3ceb7b59847afba.jpg", "Braking pads", 60m, false, new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c") });
 
             migrationBuilder.InsertData(
                 table: "Parts",
                 columns: new[] { "Id", "Description", "ImageUrl", "Name", "Price", "Sold", "VehicleId" },
-                values: new object[] { new Guid("e3fc11be-2668-4694-b866-54d9da96240c"), "In bad condition!", "https://images.cdn.circlesix.co/image/1/640/0/uploads/posts/2016/12/f184c93f6f87bd88c3ceb7b59847afba.jpg", "Braking pads", 60m, false, new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c") });
+                values: new object[] { new Guid("eb444e92-9715-477d-8595-dcd097e270ec"), "In good condition!", "https://www.masterparts.com/wp-content/uploads/2020/07/clutch_kit.jpg", "Clutch", 250m, false, new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

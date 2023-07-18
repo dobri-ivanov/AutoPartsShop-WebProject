@@ -227,7 +227,7 @@ namespace AutoPartsShop.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6b836252-e13a-4da1-b412-3cd74f171809"),
+                            Id = new Guid("eb444e92-9715-477d-8595-dcd097e270ec"),
                             Description = "In good condition!",
                             ImageUrl = "https://www.masterparts.com/wp-content/uploads/2020/07/clutch_kit.jpg",
                             Name = "Clutch",
@@ -237,7 +237,7 @@ namespace AutoPartsShop.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e3fc11be-2668-4694-b866-54d9da96240c"),
+                            Id = new Guid("d089065c-d586-43b3-9be5-8994413454c8"),
                             Description = "In bad condition!",
                             ImageUrl = "https://images.cdn.circlesix.co/image/1/640/0/uploads/posts/2016/12/f184c93f6f87bd88c3ceb7b59847afba.jpg",
                             Name = "Braking pads",
@@ -283,6 +283,28 @@ namespace AutoPartsShop.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Sellers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("33eb18fa-136d-4f29-bc04-b7467e501204"),
+                            CompanyId = new Guid("89caa742-325e-4dbb-9176-d52f7706684a"),
+                            FirstName = "Pesho",
+                            IsOwner = true,
+                            LastName = "Georgiev",
+                            PhoneNumber = "+35955466254",
+                            UserId = new Guid("c66b7420-2ac0-47d9-9161-08db770024d4")
+                        },
+                        new
+                        {
+                            Id = new Guid("0f9df212-c060-4f7f-954f-cdef53549b31"),
+                            CompanyId = new Guid("89caa742-325e-4dbb-9176-d52f7706684a"),
+                            FirstName = "Gosho",
+                            IsOwner = false,
+                            LastName = "Iliev",
+                            PhoneNumber = "+35955586241",
+                            UserId = new Guid("8d9c378a-2859-4a3d-9162-08db770024d4")
+                        });
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Vehicle", b =>
