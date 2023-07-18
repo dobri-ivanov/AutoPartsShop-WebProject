@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutoPartsShop.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,19 @@ namespace AutoPartsShop.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,8 +185,12 @@ namespace AutoPartsShop.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsOwner = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,6 +199,12 @@ namespace AutoPartsShop.Data.Migrations
                         name: "FK_Sellers_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sellers_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -193,13 +216,21 @@ namespace AutoPartsShop.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Make = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ProductionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProductionDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Modification = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vehicles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vehicles_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Vehicles_VehicleCategories_CategoryId",
                         column: x => x.CategoryId,
@@ -214,9 +245,11 @@ namespace AutoPartsShop.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    VehicleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    VehicleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Sold = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -228,6 +261,79 @@ namespace AutoPartsShop.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ContactPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeliveryAddress = table.Column<string>(type: "nvarchar(38)", maxLength: 38, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Parts_PartId",
+                        column: x => x.PartId,
+                        principalTable: "Parts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { new Guid("8d9c378a-2859-4a3d-9162-08db770024d4"), 0, "2b8cdc30-1963-4c13-bc6c-1a22585fb784", "gosho@abv.bg", false, false, null, "GOSHO@ABV.BG", "GOSHO@ABV.BG", "AQAAAAEAACcQAAAAEMupxsqyc3A+ipQ5NrTfBube2JGxL+e0wo9+8vgu9EtYEaeqQ/ZW6rDx6lpfaGlFgA==", null, false, "ONYDIZTG3AL5FFLT57HFQP3WTX5U2VJR", false, "gosho@abv.bg" },
+                    { new Guid("c66b7420-2ac0-47d9-9161-08db770024d4"), 0, "c42d267f-67b9-484b-ba42-09c8c47316f9", "pesho@abv.bg", false, false, null, "PESHO@ABV.BG", "PESHO@ABV.BG", "AQAAAAEAACcQAAAAEAs248g2DP9+bskpiionTEtPy20lJDcxeZ4kKzB+0Pxuv/88YQtVqclKzpb8apJYlg==", null, false, "MTXMNKMAVNOYDZLTBRTXNNVAKYBB4K4I", false, "pesho@abv.bg" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "Id", "Address", "Name" },
+                values: new object[] { new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "Bulgaria, Sofia", "MostAuto" });
+
+            migrationBuilder.InsertData(
+                table: "VehicleCategories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Car" },
+                    { 2, "Truck" },
+                    { 3, "Motorcycle" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Vehicles",
+                columns: new[] { "Id", "CategoryId", "CompanyId", "ImageUrl", "Make", "Model", "Modification", "ProductionDate" },
+                values: new object[] { new Guid("b44baa0a-a492-4564-862c-a85384d97d76"), 1, new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "https://www.auto-data.net/images/f126/BMW-5-Series-E60.jpg", "BMW", "530", "3.0 214hp", "2008" });
+
+            migrationBuilder.InsertData(
+                table: "Vehicles",
+                columns: new[] { "Id", "CategoryId", "CompanyId", "ImageUrl", "Make", "Model", "Modification", "ProductionDate" },
+                values: new object[] { new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c"), 1, new Guid("89caa742-325e-4dbb-9176-d52f7706684a"), "https://www.netcarshow.com/Audi-A6-2015.jpg", "Audi", "A6", "3.0 TDI 313hp", "2015" });
+
+            migrationBuilder.InsertData(
+                table: "Parts",
+                columns: new[] { "Id", "Description", "ImageUrl", "Name", "Price", "Sold", "VehicleId" },
+                values: new object[] { new Guid("6b836252-e13a-4da1-b412-3cd74f171809"), "In good condition!", "https://www.masterparts.com/wp-content/uploads/2020/07/clutch_kit.jpg", "Clutch", 250m, false, new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c") });
+
+            migrationBuilder.InsertData(
+                table: "Parts",
+                columns: new[] { "Id", "Description", "ImageUrl", "Name", "Price", "Sold", "VehicleId" },
+                values: new object[] { new Guid("e3fc11be-2668-4694-b866-54d9da96240c"), "In bad condition!", "https://images.cdn.circlesix.co/image/1/640/0/uploads/posts/2016/12/f184c93f6f87bd88c3ceb7b59847afba.jpg", "Braking pads", 60m, false, new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -269,9 +375,24 @@ namespace AutoPartsShop.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_PartId",
+                table: "Orders",
+                column: "PartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Parts_VehicleId",
                 table: "Parts",
                 column: "VehicleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sellers_CompanyId",
+                table: "Sellers",
+                column: "CompanyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sellers_UserId",
@@ -282,6 +403,11 @@ namespace AutoPartsShop.Data.Migrations
                 name: "IX_Vehicles_CategoryId",
                 table: "Vehicles",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehicles_CompanyId",
+                table: "Vehicles",
+                column: "CompanyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -302,7 +428,7 @@ namespace AutoPartsShop.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Parts");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Sellers");
@@ -311,10 +437,16 @@ namespace AutoPartsShop.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Vehicles");
+                name: "Parts");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Vehicles");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "VehicleCategories");

@@ -27,7 +27,7 @@
         {
             Assembly configAssembly = Assembly.GetAssembly(typeof(AutoPartsDbContext)) ??
                                       Assembly.GetExecutingAssembly();
-            //builder.ApplyConfigurationsFromAssembly(configAssembly);
+            builder.ApplyConfigurationsFromAssembly(configAssembly);
 
             builder.Entity<Company>()
                 .HasMany(c => c.Sellers)

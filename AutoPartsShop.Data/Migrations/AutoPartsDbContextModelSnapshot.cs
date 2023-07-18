@@ -86,6 +86,40 @@ namespace AutoPartsShop.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c66b7420-2ac0-47d9-9161-08db770024d4"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c42d267f-67b9-484b-ba42-09c8c47316f9",
+                            Email = "pesho@abv.bg",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "PESHO@ABV.BG",
+                            NormalizedUserName = "PESHO@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAs248g2DP9+bskpiionTEtPy20lJDcxeZ4kKzB+0Pxuv/88YQtVqclKzpb8apJYlg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "MTXMNKMAVNOYDZLTBRTXNNVAKYBB4K4I",
+                            TwoFactorEnabled = false,
+                            UserName = "pesho@abv.bg"
+                        },
+                        new
+                        {
+                            Id = new Guid("8d9c378a-2859-4a3d-9162-08db770024d4"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2b8cdc30-1963-4c13-bc6c-1a22585fb784",
+                            Email = "gosho@abv.bg",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "GOSHO@ABV.BG",
+                            NormalizedUserName = "GOSHO@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMupxsqyc3A+ipQ5NrTfBube2JGxL+e0wo9+8vgu9EtYEaeqQ/ZW6rDx6lpfaGlFgA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ONYDIZTG3AL5FFLT57HFQP3WTX5U2VJR",
+                            TwoFactorEnabled = false,
+                            UserName = "gosho@abv.bg"
+                        });
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Company", b =>
@@ -107,6 +141,14 @@ namespace AutoPartsShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("89caa742-325e-4dbb-9176-d52f7706684a"),
+                            Address = "Bulgaria, Sofia",
+                            Name = "MostAuto"
+                        });
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Orders", b =>
@@ -181,6 +223,28 @@ namespace AutoPartsShop.Data.Migrations
                     b.HasIndex("VehicleId");
 
                     b.ToTable("Parts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6b836252-e13a-4da1-b412-3cd74f171809"),
+                            Description = "In good condition!",
+                            ImageUrl = "https://www.masterparts.com/wp-content/uploads/2020/07/clutch_kit.jpg",
+                            Name = "Clutch",
+                            Price = 250m,
+                            Sold = false,
+                            VehicleId = new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c")
+                        },
+                        new
+                        {
+                            Id = new Guid("e3fc11be-2668-4694-b866-54d9da96240c"),
+                            Description = "In bad condition!",
+                            ImageUrl = "https://images.cdn.circlesix.co/image/1/640/0/uploads/posts/2016/12/f184c93f6f87bd88c3ceb7b59847afba.jpg",
+                            Name = "Braking pads",
+                            Price = 60m,
+                            Sold = false,
+                            VehicleId = new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c")
+                        });
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.Seller", b =>
@@ -262,6 +326,30 @@ namespace AutoPartsShop.Data.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Vehicles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("bb9e424a-7dbe-4f42-83e5-3ee32a8a301c"),
+                            CategoryId = 1,
+                            CompanyId = new Guid("89caa742-325e-4dbb-9176-d52f7706684a"),
+                            ImageUrl = "https://www.netcarshow.com/Audi-A6-2015.jpg",
+                            Make = "Audi",
+                            Model = "A6",
+                            Modification = "3.0 TDI 313hp",
+                            ProductionDate = "2015"
+                        },
+                        new
+                        {
+                            Id = new Guid("b44baa0a-a492-4564-862c-a85384d97d76"),
+                            CategoryId = 1,
+                            CompanyId = new Guid("89caa742-325e-4dbb-9176-d52f7706684a"),
+                            ImageUrl = "https://www.auto-data.net/images/f126/BMW-5-Series-E60.jpg",
+                            Make = "BMW",
+                            Model = "530",
+                            Modification = "3.0 214hp",
+                            ProductionDate = "2008"
+                        });
                 });
 
             modelBuilder.Entity("AutoPartsShop.Data.Models.VehicleCategory", b =>
@@ -280,6 +368,23 @@ namespace AutoPartsShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Car"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Truck"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Motorcycle"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>

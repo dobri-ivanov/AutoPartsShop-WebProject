@@ -8,7 +8,6 @@
 
     using static Common.NotificationMessagesConstants;
 
-    [Authorize]
     public class PartController : BaseController
     {
         private readonly IPartService partService;
