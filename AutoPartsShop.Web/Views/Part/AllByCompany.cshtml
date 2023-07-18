@@ -28,7 +28,8 @@
                     <h3 class="card-title text-center">@part.Name</h3>
                     <img src="@part.ImageUrl" class="card-img-top" alt="Auto Part Image">
                     <div class="card-body">
-                        <p class="card-text">Price: $@part.Price</p>
+                        <p class="card-text"><b>Price:</b> @part.Price lv.</p>
+                        <p class="card-text"><b>Vehicle:</b> @part.Vehicle</p>
                         <a href="/Part/View/@part.Id" class="btn btn-secondary">View</a>
                         <a href="/Part/Edit/@part.Id" class="btn btn-primary">Edit</a>
                         @{

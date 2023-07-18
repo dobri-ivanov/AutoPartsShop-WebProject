@@ -11,6 +11,7 @@
         public Task<Guid> DeleteAsync(Guid id);
         public Task<PartFormModel?> EditDataAsync(Guid id);
         public Task<Guid> EditSaveChangesAsync(Guid id, PartFormModel model);
-        public Task<ICollection<PartViewModel>> AllByCompany(Guid id);
+        public Task<ICollection<PartViewModel>> AllByCompanyAsync(Guid id);
+        public Task<PartInfoViewModel?> InfoAsync(Guid id);
     }
 }

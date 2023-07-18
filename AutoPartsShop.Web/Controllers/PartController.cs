@@ -127,9 +127,23 @@
                 return Unauthorized();
             }
 
-            ICollection<PartViewModel> models = await partService.AllByCompany(id);
+            ICollection<PartViewModel> models = await partService.AllByCompanyAsync(id);
 
             return View(models);
+
+        }
+        [HttpGet]
+        public async Task<IActionResult> View(Guid id)
+        {
+
+           PartInfoViewModel? model = await partService.InfoAsync(id);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
 
         }
 

@@ -19,19 +19,20 @@
 
 </style>
 
-<div>
-    <form asp-action="Index" method="get">
-        <div class="input-group col-md-4">
-            <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
-                <button class="btn btn-outline-secondary" type="button">
-                    <i class="bi bi-search"></i>
-                </button>
-        </div>
-    </form>
-</div>
-
 <div class="container">
     <h1 class="text-white text-center"><b>AUTO PARTS</b></h1>
+
+    <div>
+        <form asp-action="Index" method="get">
+            <div class="input-group col-md-4">
+                <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+                <button class="btn btn-outline-primary" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
     <div class="row">
         @foreach (var ad in Model)
         {
@@ -43,9 +44,8 @@
                         <h5 class="card-text">@ad.Vehicle</h5>
                         <p class="card-text">Price: $@ad.Price</p>
                         <p class="card-text">Seller: @ad.Seller</p>
-                        <a href="#" class="btn btn-primary">Buy</a>
-                        <a href="#" class="btn btn-secondary">Info</a>
-                        <a href="#" class="btn btn-info contact-seller">Seller</a>
+                        <a href="/Part/View/@ad.Id" class="btn btn-primary">Buy</a>
+                        <a href="/Part/View/@ad.Id" class="btn btn-secondary">Info</a>
                     </div>
                 </div>
             </div>

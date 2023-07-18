@@ -36,6 +36,7 @@
             List<PartViewModel> parts = await data.Parts
                .Select(p => new PartViewModel()
                {
+                   Id = p.Id,
                    Name = p.Name,
                    Price = p.Price,
                    ImageUrl = p.ImageUrl,
@@ -47,7 +48,7 @@
             return parts;
         }
 
-        public async Task<ICollection<PartViewModel>> AllByCompany(Guid id)
+        public async Task<ICollection<PartViewModel>> AllByCompanyAsync(Guid id)
         {
             ICollection<PartViewModel> models = new HashSet<PartViewModel>();
 
@@ -62,7 +63,8 @@
                    Name = p.Name,
                    Price = p.Price,
                    Id = p.Id,
-                   CompanyId = p.Vehicle.CompanyId
+                   CompanyId = p.Vehicle.CompanyId,
+                   Vehicle = p.Vehicle.ToString()
                })
                .ToListAsync();
             }
@@ -165,6 +167,35 @@
                 }
             }
             return Guid.Empty;
+        }
+
+        public async Task<PartInfoViewModel?> InfoAsync(Guid id)
+        {
+            PartInfoViewModel? model = new PartInfoViewModel();
+
+            Part? part = await data.Parts
+                .Include(p => p.Vehicle)
+                .Include(p => p.Vehicle.Company)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (part != null)
+            {
+                var company = data.Companies
+                    .Where(c => c.Id == part.Vehicle.CompanyId);
+
+                model.Id = id;
+                model.Name = part.Name;
+                model.Vehicle = part.Vehicle.ToString();
+                model.Description = part.Description;
+                model.Price = part.Price;
+                model.ImageUrl = part.ImageUrl;
+                model.Company = part.Vehicle.Company.ToString();
+
+                return model;
+            }
+
+            return null;
+
         }
     }
 }

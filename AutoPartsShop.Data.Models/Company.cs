@@ -22,5 +22,10 @@ namespace AutoPartsShop.Data.Models
         public string Address { get; set; } = null!;
 
         public ICollection<Seller> Sellers { get;} = null!;
+
+        public override string ToString()
+        {
+            return String.Format($"{Name}, {Address}");
+        }
     }
 }
