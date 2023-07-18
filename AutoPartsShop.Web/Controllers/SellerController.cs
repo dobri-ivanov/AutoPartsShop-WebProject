@@ -1,9 +1,10 @@
-﻿using AutoPartsShop.Services.Data.Interfaces;
-using AutoPartsShop.Web.ViewModels.Seller;
-using Microsoft.AspNetCore.Mvc;
-
-namespace AutoPartsShop.Web.Controllers
+﻿namespace AutoPartsShop.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    
+    using AutoPartsShop.Services.Data.Interfaces;
+    using AutoPartsShop.Web.ViewModels.Seller;
+
     public class SellerController : BaseController
     {
         private readonly ISellerService sellerService;

@@ -1,8 +1,7 @@
-﻿using AutoPartsShop.Web.ViewModels.Vehicle;
-using AutoPartsShop.Web.ViewModels.Vehicles;
-
-namespace AutoPartsShop.Services.Data.Interfaces
+﻿namespace AutoPartsShop.Services.Data.Interfaces
 {
+    using AutoPartsShop.Web.ViewModels.Vehicle;
+    
     public interface IVehicleService
     {
         public Task AddAsync(VehicleFormModel model);

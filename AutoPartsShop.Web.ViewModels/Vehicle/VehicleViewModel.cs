@@ -1,4 +1,4 @@
-﻿namespace AutoPartsShop.Web.ViewModels.Vehicles
+﻿namespace AutoPartsShop.Web.ViewModels.Vehicle
 {
     public class VehicleViewModel
     {

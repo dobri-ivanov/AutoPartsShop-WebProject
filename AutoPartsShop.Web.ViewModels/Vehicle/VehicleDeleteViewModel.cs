@@ -1,6 +1,4 @@
-﻿using AutoPartsShop.Web.ViewModels.Vehicles;
-
-namespace AutoPartsShop.Web.ViewModels.Vehicle
+﻿namespace AutoPartsShop.Web.ViewModels.Vehicle
 {
     public class VehicleDeleteViewModel : VehicleViewModel
     {

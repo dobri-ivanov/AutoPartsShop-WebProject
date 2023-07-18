@@ -1,10 +1,11 @@
-﻿using AutoPartsShop.Services.Data.Interfaces;
-using AutoPartsShop.Web.Data;
-using AutoPartsShop.Web.Views.VehicleCategory;
-using Microsoft.EntityFrameworkCore;
-
-namespace AutoPartsShop.Services.Data
+﻿namespace AutoPartsShop.Services.Data
 {
+    using Microsoft.EntityFrameworkCore;
+    
+    using AutoPartsShop.Services.Data.Interfaces;
+    using AutoPartsShop.Web.Data;
+    using AutoPartsShop.Web.Views.VehicleCategory;
+
     internal class VehicleCategoryService : IVehicleCategoryService
     {
         private readonly AutoPartsDbContext data;

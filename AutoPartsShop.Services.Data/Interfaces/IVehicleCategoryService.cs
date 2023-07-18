@@ -1,10 +1,10 @@
-﻿using AutoPartsShop.Web.Views.VehicleCategory;
-
-namespace AutoPartsShop.Services.Data.Interfaces
+﻿namespace AutoPartsShop.Services.Data.Interfaces
 {
+    using AutoPartsShop.Web.Views.VehicleCategory;
+    
     public interface IVehicleCategoryService
     {
         public Task<ICollection<VehicleCategoryViewModel>> AllAsync();
-        
+
     }
 }

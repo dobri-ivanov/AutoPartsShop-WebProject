@@ -1,10 +1,10 @@
-﻿using AutoPartsShop.Services.Data.Interfaces;
-using AutoPartsShop.Web.ViewModels.Vehicle;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace AutoPartsShop.Web.Controllers
+﻿namespace AutoPartsShop.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    
+    using AutoPartsShop.Services.Data.Interfaces;
+    using AutoPartsShop.Web.ViewModels.Vehicle;
+    
     public class VehicleController : BaseController
     {
         private readonly IVehicleCategoryService categoryService;

@@ -1,7 +1,8 @@
 ﻿namespace AutoPartsShop.Services.Data.Interfaces
 {
-    using AutoPartsShop.Web.ViewModels.Part;
     using System;
+    
+    using AutoPartsShop.Web.ViewModels.Part;
 
     public interface IPartService
     {

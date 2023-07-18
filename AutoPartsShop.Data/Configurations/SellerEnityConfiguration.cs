@@ -1,12 +1,13 @@
 ﻿namespace AutoPartsShop.Data.Configurations
 {
+    using System;
+    
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     
     using AutoPartsShop.Data.Models;
-    using System;
 
-    public class SellerEnityConfiguration : IEntityTypeConfiguration<Seller>
+    class SellerEnityConfiguration : IEntityTypeConfiguration<Seller>
     {
         public void Configure(EntityTypeBuilder<Seller> builder)
         {

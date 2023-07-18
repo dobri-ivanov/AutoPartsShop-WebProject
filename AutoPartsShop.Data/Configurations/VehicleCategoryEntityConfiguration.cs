@@ -5,7 +5,7 @@
     
     using Models;
 
-    public class VehicleCategoryEntityConfiguration : IEntityTypeConfiguration<VehicleCategory>
+    class VehicleCategoryEntityConfiguration : IEntityTypeConfiguration<VehicleCategory>
     {
         public void Configure(EntityTypeBuilder<VehicleCategory> builder)
         {

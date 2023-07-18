@@ -5,7 +5,7 @@
 
     using AutoPartsShop.Data.Models;
 
-    public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {

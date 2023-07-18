@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using static AutoPartsShop.Common.EntityValidationConstants.Orders;
+    
     public class Orders
     {
         [Key]

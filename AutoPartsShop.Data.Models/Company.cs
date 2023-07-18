@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace AutoPartsShop.Data.Models
+﻿namespace AutoPartsShop.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    
     using static AutoPartsShop.Common.EntityValidationConstants.Company;
+    
     public class Company
     {
         public Company()
@@ -21,7 +22,7 @@ namespace AutoPartsShop.Data.Models
         [MaxLength(CompanyAddressMaxLength)]
         public string Address { get; set; } = null!;
 
-        public ICollection<Seller> Sellers { get;} = null!;
+        public ICollection<Seller> Sellers { get; } = null!;
 
         public override string ToString()
         {

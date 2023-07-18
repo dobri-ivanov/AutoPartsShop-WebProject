@@ -1,13 +1,13 @@
-﻿using AutoPartsShop.Data.Models;
-using AutoPartsShop.Services.Data.Interfaces;
-using AutoPartsShop.Web.Data;
-using AutoPartsShop.Web.ViewModels.Part;
-using AutoPartsShop.Web.ViewModels.Vehicle;
-using AutoPartsShop.Web.ViewModels.Vehicles;
-using Microsoft.EntityFrameworkCore;
-
-namespace AutoPartsShop.Services.Data
+﻿namespace AutoPartsShop.Services.Data
 {
+    using Microsoft.EntityFrameworkCore;
+    
+    using AutoPartsShop.Data.Models;
+    using AutoPartsShop.Services.Data.Interfaces;
+    using AutoPartsShop.Web.Data;
+    using AutoPartsShop.Web.ViewModels.Part;
+    using AutoPartsShop.Web.ViewModels.Vehicle;
+
     public class VehicleService : IVehicleService
     {
         private readonly AutoPartsDbContext data;

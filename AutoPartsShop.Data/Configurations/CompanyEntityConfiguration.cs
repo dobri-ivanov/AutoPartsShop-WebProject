@@ -5,7 +5,7 @@
     
     using AutoPartsShop.Data.Models;
 
-    public class CompanyEntityConfiguration : IEntityTypeConfiguration<Company>
+    class CompanyEntityConfiguration : IEntityTypeConfiguration<Company>
     {
         public void Configure(EntityTypeBuilder<Company> builder)
         {

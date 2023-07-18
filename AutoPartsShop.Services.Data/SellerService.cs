@@ -4,8 +4,8 @@
 
     using AutoPartsShop.Data.Models;
     using AutoPartsShop.Web.Data;
-    using Interfaces;
     using AutoPartsShop.Web.ViewModels.Seller;
+    using Interfaces;
 
     public class SellerService : ISellerService
     {

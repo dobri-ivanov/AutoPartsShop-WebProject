@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace AutoPartsShop.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

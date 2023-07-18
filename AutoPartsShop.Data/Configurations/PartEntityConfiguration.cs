@@ -5,7 +5,7 @@
     
     using Models;
     
-    internal class PartEntityConfiguration : IEntityTypeConfiguration<Part>
+    class PartEntityConfiguration : IEntityTypeConfiguration<Part>
     {
         public void Configure(EntityTypeBuilder<Part> builder)
         {

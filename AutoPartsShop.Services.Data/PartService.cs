@@ -2,10 +2,10 @@
 {
     using Microsoft.EntityFrameworkCore;
 
+    using AutoPartsShop.Data.Models;
     using AutoPartsShop.Services.Data.Interfaces;
     using AutoPartsShop.Web.Data;
     using AutoPartsShop.Web.ViewModels.Part;
-    using AutoPartsShop.Data.Models;
 
     public class PartService : IPartService
     {
