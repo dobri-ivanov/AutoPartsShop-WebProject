@@ -4,6 +4,7 @@ using AutoPartsShop.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoPartsShop.Data.Migrations
 {
     [DbContext(typeof(AutoPartsDbContext))]
-    partial class AutoPartsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230718114654_AddedOrdersTable")]
+    partial class AddedOrdersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,7 +121,7 @@ namespace AutoPartsShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DeliveryAddress")
+                    b.Property<string>("DelivaryAddress")
                         .IsRequired()
                         .HasMaxLength(38)
                         .HasColumnType("nvarchar(38)");
@@ -169,9 +171,6 @@ namespace AutoPartsShop.Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("Sold")
-                        .HasColumnType("bit");
 
                     b.Property<Guid>("VehicleId")
                         .HasColumnType("uniqueidentifier");

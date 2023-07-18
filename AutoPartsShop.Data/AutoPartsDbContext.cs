@@ -20,6 +20,7 @@
         public DbSet<VehicleCategory> VehicleCategories { get; set; } = null!;
         public DbSet<Seller> Sellers { get; set; } = null!;
         public DbSet<Company> Companies { get; set; } = null!;
+        public DbSet<Orders> Orders { get; set; } = null!;
 
 
         protected override void OnModelCreating(ModelBuilder builder)

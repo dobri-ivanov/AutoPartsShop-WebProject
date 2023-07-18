@@ -103,7 +103,15 @@ namespace AutoPartsShop.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Fire(Guid id)
         {
-            Guid companyId = await sellerService.CompanyIdBySellerId(id);
+            Guid companyId;
+            try
+            {
+                companyId = await sellerService.CompanyIdBySellerId(id);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }     
 
             if (companyId == Guid.Empty)
             {

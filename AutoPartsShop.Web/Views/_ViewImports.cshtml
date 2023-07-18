@@ -1,5 +1,21 @@
-﻿@using AutoPartsShop.Web
+﻿@using Microsoft.AspNetCore.Identity;
+
+@using AutoPartsShop.Data.Models;
+
+@using AutoPartsShop.Web
 @using AutoPartsShop.Web.Models
 @using AutoPartsShop.Web.ViewModels.Part
 @using AutoPartsShop.Web.ViewModels.Company
+@using AutoPartsShop.Web.ViewModels.Vehicle
+@using AutoPartsShop.Web.ViewModels.Seller;
+
+@using AutoPartsShop.Services.Data;
+@using AutoPartsShop.Services.Data.Interfaces;
+
+@using static AutoPartsShop.Common.GeneralApplicationConstants;
+
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject ISellerService SellerService
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

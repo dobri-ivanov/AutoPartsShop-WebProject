@@ -31,13 +31,13 @@
         }
         public class Seller
         {
-            public const int SellerPhoneNumberMaxLength = 15;
-
             public const int SellerFirstNameMaxLength = 50;
             public const int SellerFirstNameMinLength = 5;
 
             public const int SellerLastNameMaxLength = 50;
             public const int SellerLastNameMinLength = 5;
+
+            public const string SellerPhoneNumberRegularExpression = "^\\+[0-9]{12}|0[0-9]{9}";
         }
         public class Company
         {
@@ -47,5 +47,20 @@
             public const int CompanyAddressMaxLength = 50;
             public const int CompanyAddressMinLength = 1;
         }
+        public class Orders
+        {
+            public const int OrderFirstNameMaxLength = 50;
+            public const int OrderFirstNameMinLength = 5;
+
+            public const int OrderLastNameMaxLength = 50;
+            public const int OrderLastNameMinLength = 5;
+
+            public const string OrderContactPhoneNumberRegularExpression = "^\\+[0-9]{12}|0[0-9]{9}";
+
+            public const int OrderDeliveryAddressMaxLength = 38;
+            public const int OrderDeliveryAddressMinLength = 5;
+        }
+
+
     }
 }

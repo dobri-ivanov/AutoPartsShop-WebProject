@@ -6,6 +6,8 @@
     using AutoPartsShop.Services.Data.Interfaces;
     using AutoPartsShop.Web.ViewModels.Part;
 
+    using static Common.NotificationMessagesConstants;
+
     [Authorize]
     public class PartController : BaseController
     {
@@ -23,6 +25,7 @@
         [HttpGet]
         public async Task<IActionResult> All()
         {
+
             return View(await partService.All());
         }
 
@@ -65,14 +68,20 @@
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            PartDeleteViewModel? model = await partService.DeleteDataAsync(id);
-
-            if (model == null!)
+            try
             {
-                return NotFound();
-            }
+                PartDeleteViewModel? model = await partService.DeleteDataAsync(id);
+                if (model == null!)
+                {
+                    return NotFound();
+                }
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return this.GeneralError();
+            }                       
         }
 
         [HttpPost]

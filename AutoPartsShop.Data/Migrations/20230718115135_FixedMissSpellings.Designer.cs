@@ -4,6 +4,7 @@ using AutoPartsShop.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoPartsShop.Data.Migrations
 {
     [DbContext(typeof(AutoPartsDbContext))]
-    partial class AutoPartsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230718115135_FixedMissSpellings")]
+    partial class FixedMissSpellings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

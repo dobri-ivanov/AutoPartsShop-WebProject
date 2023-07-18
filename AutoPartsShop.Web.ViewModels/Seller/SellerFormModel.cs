@@ -25,6 +25,7 @@
         public string LastName { get; set; } = null!;
 
         [Required]
+        [RegularExpression(SellerPhoneNumberRegularExpression)]
         public string PhoneNumber { get; set; } = null!;
 
         public bool IsOwner { get; set; } = false;

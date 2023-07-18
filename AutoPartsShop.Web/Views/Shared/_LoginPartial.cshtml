@@ -1,12 +1,4 @@
-﻿@using AutoPartsShop.Data.Models;
-@using AutoPartsShop.Services.Data.Interfaces;
-@using AutoPartsShop.Services.Data;
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-@inject ISellerService SellerService
-
-<ul class="navbar-nav">
+﻿<ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         var user = await UserManager.GetUserAsync(User);
@@ -14,6 +6,10 @@
         if (await SellerService.IsSeller(userId))
         {
             Guid companyId = await SellerService.CompanyId(userId);
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-route-id="@companyId" asp-controller="Orders" asp-action="View">Orders</a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-route-id="@companyId" asp-controller="Part" asp-action="AllByCompany">Parts</a>

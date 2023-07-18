@@ -1,12 +1,10 @@
 ﻿namespace AutoPartsShop.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
 
     using AutoPartsShop.Web.ViewModels.Company;
     using AutoPartsShop.Services.Data.Interfaces;
 
-    [Authorize]
     public class CompanyController : BaseController
     {
         private readonly ICompanyService companyService;

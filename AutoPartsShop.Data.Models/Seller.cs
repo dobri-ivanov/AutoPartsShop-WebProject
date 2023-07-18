@@ -23,7 +23,6 @@
         public string LastName { get; set; } = null!;
 
         [Required]
-        [MaxLength(SellerPhoneNumberMaxLength)]
         public string PhoneNumber { get; set; } = null!;
 
         [Required]

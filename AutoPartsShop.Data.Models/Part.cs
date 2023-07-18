@@ -30,5 +30,7 @@
         public Guid VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set; } = null!;
 
+        public bool Sold { get; set; } = false;
+
     }
 }

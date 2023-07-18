@@ -19,20 +19,22 @@
 
 </style>
 
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false">
+        Dropdown button
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
 <div class="container">
     <h1 class="text-white text-center"><b>AUTO PARTS</b></h1>
-
-    <div>
-        <form asp-action="Index" method="get">
-            <div class="input-group col-md-4">
-                <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
-                <button class="btn btn-outline-primary" type="button">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-        </form>
-    </div>
-
     <div class="row">
         @foreach (var ad in Model)
         {
@@ -42,7 +44,7 @@
                     <img src="@ad.ImageUrl" class="card-img-top" alt="Auto Part Image">
                     <div class="card-body">
                         <h5 class="card-text">@ad.Vehicle</h5>
-                        <p class="card-text">Price: $@ad.Price</p>
+                        <p class="card-text">Price: @ad.Price $</p>
                         <p class="card-text">Seller: @ad.Seller</p>
                         <a href="/Part/View/@ad.Id" class="btn btn-primary">Buy</a>
                         <a href="/Part/View/@ad.Id" class="btn btn-secondary">Info</a>

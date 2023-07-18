@@ -1,5 +1,4 @@
-﻿@using AutoPartsShop.Web.ViewModels.Part;
-@model PartInfoViewModel
+﻿@model PartInfoViewModel
 
 @{
     ViewData["Title"] = "Delete Part";
@@ -7,7 +6,7 @@
 
 <h2>Part Details</h2>
 
-<div style="text-align: ;">
+<div>
     <h4></h4>
     <img class="card-body col-sm-3" src="@Model.ImageUrl" />
     <hr />
@@ -16,7 +15,7 @@
         <dd class="col-sm-10">@Model.Name</dd>
 
         <dt class="col-sm-2">Price:</dt>
-        <dd class="col-sm-10">@Model.Price</dd>
+        <dd class="col-sm-10">@Model.Price $</dd>
 
         <dt class="col-sm-2">Vehicle:</dt>
         <dd class="col-sm-10">@Model.Vehicle</dd>

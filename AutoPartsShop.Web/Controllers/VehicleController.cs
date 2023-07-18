@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoPartsShop.Web.Controllers
 {
-    [Authorize]
     public class VehicleController : BaseController
     {
         private readonly IVehicleCategoryService categoryService;
