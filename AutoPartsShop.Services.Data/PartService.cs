@@ -47,6 +47,29 @@
             return parts;
         }
 
+        public async Task<ICollection<PartViewModel>> AllByCompany(Guid id)
+        {
+            ICollection<PartViewModel> models = new HashSet<PartViewModel>();
+
+            if (data.Parts.Any())
+            {
+                models = await data.Parts
+               .Include(p => p.Vehicle)
+               .Where(p => p.Vehicle.CompanyId == id)
+               .Select(p => new PartViewModel()
+               {
+                   ImageUrl = p.ImageUrl,
+                   Name = p.Name,
+                   Price = p.Price,
+                   Id = p.Id,
+                   CompanyId = p.Vehicle.CompanyId
+               })
+               .ToListAsync();
+            }
+
+            return models;
+        }
+
         public async Task<Guid> DeleteAsync(Guid id)
         {
             if (data.Parts.Any())

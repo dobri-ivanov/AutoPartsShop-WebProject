@@ -16,6 +16,10 @@
             Guid companyId = await SellerService.CompanyId(userId);
 
             <li class="nav-item">
+                <a class="nav-link text-dark" asp-route-id="@companyId" asp-controller="Part" asp-action="AllByCompany">Parts</a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link text-dark" asp-route-id="@companyId" asp-controller="Company" asp-action="Overview">Your Company</a>
             </li>
         }

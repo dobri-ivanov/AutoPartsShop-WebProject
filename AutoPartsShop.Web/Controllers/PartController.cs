@@ -119,6 +119,19 @@
 
             return RedirectToAction("Details", "Vehicle", new { id = vehicleId });
         }
+        [HttpGet]
+        public async Task<IActionResult> AllByCompany(Guid id)
+        {
+            if (!await sellerService.IsOwner(CurrentUserId(), id))
+            {
+                return Unauthorized();
+            }
+
+            ICollection<PartViewModel> models = await partService.AllByCompany(id);
+
+            return View(models);
+
+        }
 
     }
 }

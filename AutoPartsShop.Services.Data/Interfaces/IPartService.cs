@@ -10,6 +10,7 @@
         public Task<PartDeleteViewModel?> DeleteDataAsync(Guid id);
         public Task<Guid> DeleteAsync(Guid id);
         public Task<PartFormModel?> EditDataAsync(Guid id);
-        Task<Guid> EditSaveChangesAsync(Guid id, PartFormModel model);
+        public Task<Guid> EditSaveChangesAsync(Guid id, PartFormModel model);
+        public Task<ICollection<PartViewModel>> AllByCompany(Guid id);
     }
 }
