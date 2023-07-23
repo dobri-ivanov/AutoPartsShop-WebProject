@@ -1,4 +1,4 @@
-# Auto parts Shop
+# AutoParts Shop
 
 <div align = "center">
     <img src="https://cdn.discordapp.com/attachments/837093180783722536/1132727770762461214/png-transparent-car-chevrolet-orlando-scooter-spare-part-motorcycle-car-scooter-bicycle-vehicle-removebg-preview.png" width="30%">
