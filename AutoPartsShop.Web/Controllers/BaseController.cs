@@ -7,6 +7,7 @@
     using static Common.NotificationMessagesConstants;
 
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public class BaseController : Controller
     {
         public Guid CurrentUserId()

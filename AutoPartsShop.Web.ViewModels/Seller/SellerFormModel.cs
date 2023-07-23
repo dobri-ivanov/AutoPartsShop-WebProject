@@ -1,6 +1,7 @@
 ﻿namespace AutoPartsShop.Web.ViewModels.Seller
 {
     using System.ComponentModel.DataAnnotations;
+   
     using static AutoPartsShop.Common.EntityValidationConstants.Seller;
 
     public class SellerFormModel

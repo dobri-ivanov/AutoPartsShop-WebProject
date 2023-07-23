@@ -20,6 +20,8 @@
 
             sellers[0] = new Seller()
             {
+                //Owner
+
                 Id = Guid.NewGuid(),
                 CompanyId = Guid.Parse("89caa742-325e-4dbb-9176-d52f7706684a"),
                 UserId = Guid.Parse("c66b7420-2ac0-47d9-9161-08db770024d4"),
@@ -31,6 +33,8 @@
 
             sellers[1] = new Seller()
             {
+                //Employee
+
                 Id = Guid.NewGuid(),
                 CompanyId = Guid.Parse("89caa742-325e-4dbb-9176-d52f7706684a"),
                 UserId = Guid.Parse("8d9c378a-2859-4a3d-9162-08db770024d4"),

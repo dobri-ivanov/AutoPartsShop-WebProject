@@ -7,6 +7,7 @@
     using AutoPartsShop.Web.ViewModels.Company;
     using AutoPartsShop.Web.ViewModels.Seller;
     using Interfaces;
+    using System.Net;
 
     public class CompanyService : ICompanyService
     {
@@ -22,7 +23,7 @@
             Company company = new Company()
             {
                 Id = companyModel.Id,
-                Name = companyModel.Name,
+                Name = WebUtility.HtmlEncode(companyModel.Name),
                 Address = companyModel.Address,
 
             };
