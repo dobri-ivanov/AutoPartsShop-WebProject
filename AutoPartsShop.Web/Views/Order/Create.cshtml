@@ -1,1 +1,57 @@
-﻿
+﻿@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Buy Auto Part";
+}
+
+<style>
+    body {
+        background-image: url("https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg");
+    }
+</style>
+
+<div class="container">
+    <h1 class="text-center">Buy Auto Part</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Customer Information</h2>
+            <form method="post" asp-action="Create" asp-controller="Order">
+                <div class="form-group">
+                    <label asp-for="Customer.FirstName">First Name</label>
+                    <input asp-for="Customer.FirstName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Customer.LastName">Last Name</label>
+                    <input asp-for="Customer.LastName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Customer.PhoneNumber">Phone Number</label>
+                    <input asp-for="Customer.PhoneNumber" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Customer.Address">Delivery address</label>
+                    <input asp-for="Customer.Address" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button style="margin-top: 1.5%;"type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2>Part Information</h2>
+            @if (Model != null)
+            {
+                <div class="card">
+                    <img src="@Model.Part.ImageUrl" class="card-img-top" alt="Part Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.Part.Name</h5>
+                        <p class="card-text"><b>Price:</b> $@Model.Part.Price</p>
+                        <p class="card-text"><b>Vehicle:</b> @Model.Part.Vehicle</p>
+                        <p class="card-text"><b>Description:</b> @Model.Part.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
